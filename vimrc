@@ -55,6 +55,13 @@ vmap <Leader>t :Tab /\|<CR>
 nmap <C-l> :nohlsearch<CR>
 
 ""
+" wildmenu
+" http://stackoverflow.com/a/526940
+"
+set wildmenu
+set wildmode=longest,list,full
+
+""
 " Vundle
 " https://github.com/gmarik/vundle/issues/16#issuecomment-1044901
 "

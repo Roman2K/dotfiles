@@ -32,6 +32,7 @@ Tabular.vim  | ,=              | Align on =
 Tabular.vim  | ,:              | Align on :
 undotree     | :UndotreeToggle |
 surround.vim | cs'"            | Replace surrounding " with '
+EasyMotion   | ,,w             | Visual motion selection
 (dotfiles)   | Ctrl + L        | Clear search results
 
 ## Themes

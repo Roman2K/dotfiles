@@ -5,13 +5,15 @@ Vundle:
 1. Follow the [README](https://github.com/gmarik/vundle)
 2. `$ vim +BundleInstall +BundleClean +qa`
 
-## Notable bundles 
+## Notable bundles
 
 * [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
 * [eunuch.vim](https://github.com/tpope/vim-eunuch)
 * [ctrlp.vim](https://github.com/kien/ctrlp.vim)
 * [Supertab](https://github.com/ervandew/supertab)
 * [Tabular.vim](https://github.com/godlygeek/tabular)
+* [vim-airline](https://github.com/bling/vim-airline)
+* [Vim Git Gutter](https://github.com/airblade/vim-gitgutter)
 
 Bundle       | Trigger       | Description
 ------------ | ------------- | -----------

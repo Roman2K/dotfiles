@@ -3,7 +3,7 @@ set nocompatible " Vim
 ""
 " Vundle
 " https://github.com/gmarik/vundle
-" 
+"
 let root='~/.vim/bundle'
 let src='http://github.com/gmarik/vundle.git'
 filetype off
@@ -13,12 +13,14 @@ Bundle 'gmarik/vundle'
 
 ""
 " Bundles
-" 
+"
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'tpope/vim-eunuch'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
+Bundle 'bling/vim-airline'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elzr/vim-json'
@@ -27,7 +29,7 @@ Bundle 'w0ng/vim-hybrid'
 
 ""
 " Themes
-" 
+"
 syntax on
 set background=dark
 let g:solarized_termcolors=256
@@ -37,6 +39,8 @@ colorscheme hybrid
 ""
 " Config
 "
+set number
+set laststatus=2
 set list
 let mapleader=','
 nmap <Leader>= :Tab /=<CR>

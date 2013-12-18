@@ -4,11 +4,12 @@ set nocompatible " Vim
 " Vundle
 " https://github.com/gmarik/vundle
 "
-let root='~/.vim/bundle'
+let root='~/.vim'
+let bundle_dir=root.'/bundle'
 let src='http://github.com/gmarik/vundle.git'
 filetype off
-exec 'set runtimepath+='.root.'/vundle'
-call vundle#rc(root)
+exec 'set runtimepath+='.bundle_dir.'/vundle'
+call vundle#rc(bundle_dir)
 Bundle 'gmarik/vundle'
 
 ""
@@ -43,6 +44,7 @@ colorscheme hybrid
 ""
 " Config
 "
+exec 'set directory='.root.'/swap,.'
 set number
 set laststatus=2
 set list

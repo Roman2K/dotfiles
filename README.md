@@ -15,6 +15,9 @@ Vundle:
 * [vim-airline](https://github.com/bling/vim-airline)
 * [Vim Git Gutter](https://github.com/airblade/vim-gitgutter)
 * [undotree](https://github.com/mbbill/undotree)
+* [surround.vim](https://github.com/tpope/vim-surround)
+* [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
+* [fugitive.vim](https://github.com/tpope/vim-fugitive)
 
 Notable features:
 

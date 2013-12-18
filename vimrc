@@ -43,12 +43,14 @@ colorscheme hybrid
 set number
 set laststatus=2
 set list
+set hlsearch
 let mapleader=','
 nmap <Leader>= :Tab /=<CR>
 vmap <Leader>= :Tab /=<CR>
 nmap <Leader>: :Tab /:\zs<CR>
 vmap <Leader>: :Tab /:\zs<CR>
 vmap <Leader>t :Tab /\|<CR>
+nmap <C-l> :nohlsearch<CR>
 
 ""
 " Vundle

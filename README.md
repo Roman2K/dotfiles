@@ -29,6 +29,7 @@ Tabular.vim  | :Tab /=         | https://github.com/godlygeek/tabular
 Tabular.vim  | ,=              | Align on =
 Tabular.vim  | ,:              | Align on :
 undotree     | :UndotreeToggle |
+(dotfiles)   | Ctrl + L        | Clear search results
 
 ## Themes
 

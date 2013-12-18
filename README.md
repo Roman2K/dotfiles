@@ -5,7 +5,7 @@ Vundle:
 1. Follow the [README](https://github.com/gmarik/vundle)
 2. `$ vim +BundleInstall +BundleClean +qa`
 
-## Notable bundles
+## Bundles
 
 * [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
 * [eunuch.vim](https://github.com/tpope/vim-eunuch)
@@ -15,6 +15,8 @@ Vundle:
 * [vim-airline](https://github.com/bling/vim-airline)
 * [Vim Git Gutter](https://github.com/airblade/vim-gitgutter)
 * [undotree](https://github.com/mbbill/undotree)
+
+Notable features:
 
 Bundle       | Trigger         | Description
 ------------ | -------------   | -----------

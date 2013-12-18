@@ -14,19 +14,21 @@ Vundle:
 * [Tabular.vim](https://github.com/godlygeek/tabular)
 * [vim-airline](https://github.com/bling/vim-airline)
 * [Vim Git Gutter](https://github.com/airblade/vim-gitgutter)
+* [undotree](https://github.com/mbbill/undotree)
 
-Bundle       | Trigger       | Description
------------- | ------------- | -----------
-EditorConfig | .editorconfig | http://editorconfig.org/#example-file
-vim-eunuch   | :Remove       | Delete file
-vim-eunuch   | :Move         | Rename file
-ctrlp.vim    | Ctrl + P      | Fuzzy file finder
-ctrlp.vim    | Ctrl + X      | Open match in horizontal split
-ctrlp.vim    | Ctrl + V      | Open match in vertical split
-Supertab     | Tab           | Autocomplete
-Tabular.vim  | :Tab /=       | https://github.com/godlygeek/tabular
-Tabular.vim  | ,=            | Align on =
-Tabular.vim  | ,:            | Align on :
+Bundle       | Trigger         | Description
+------------ | -------------   | -----------
+EditorConfig | .editorconfig   | http://editorconfig.org/#example-file
+vim-eunuch   | :Remove         | Delete file
+vim-eunuch   | :Move           | Rename file
+ctrlp.vim    | Ctrl + P        | Fuzzy file finder
+ctrlp.vim    | Ctrl + X        | Open match in horizontal split
+ctrlp.vim    | Ctrl + V        | Open match in vertical split
+Supertab     | Tab             | Autocomplete
+Tabular.vim  | :Tab /=         | https://github.com/godlygeek/tabular
+Tabular.vim  | ,=              | Align on =
+Tabular.vim  | ,:              | Align on :
+undotree     | :UndotreeToggle |
 
 ## Themes
 

@@ -44,3 +44,7 @@ alias st='git status'
 alias di='git diff'
 alias a='git add'
 alias co='git commit'
+
+# Colors
+export CLICOLOR=1
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

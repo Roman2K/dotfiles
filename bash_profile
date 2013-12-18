@@ -2,6 +2,7 @@ OPT=$HOME/opt
 HOMEBREW=$LOCAL/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
+BIN=$HOME/code/bin
 
 add_opt() {
 	local d=$1
@@ -30,8 +31,8 @@ export PATH="$RBENV/shims:$PATH"
 add_opt "$NDENV"
 export PATH="$NDENV/shims:$PATH"
 
-# ~/bin
-export PATH="$HOME/bin:$PATH"
+# bin/
+export PATH="$BIN:$PATH"
 
 # Vim
 export EDITOR='vim'

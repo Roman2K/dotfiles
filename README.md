@@ -41,7 +41,3 @@ hybrid      | Hybrid.terminal
 * [vim-javascript](https://github.com/pangloss/vim-javascript)
 * [vim-coffee-script](https://github.com/kchmck/vim-coffee-script)
 * [vim-json](https://github.com/elzr/vim-json)
-
-## Next
-
-* [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)

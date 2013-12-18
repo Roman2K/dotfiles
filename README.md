@@ -1,9 +1,9 @@
 ## Install
 
-Vundle:
-
-1. Follow the [README](https://github.com/gmarik/vundle)
-2. `$ vim +BundleInstall +BundleClean +qa`
+    $ cd
+    $ mkdir -p .vim/{bundle,swap}
+    $ git clone https://github.com/gmarik/vundle .vim/bundle/vundle
+    $ vim +BundleInstall +BundleClean +qa
 
 ## Bundles
 
@@ -19,11 +19,10 @@ Vundle:
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [fugitive.vim](https://github.com/tpope/vim-fugitive)
 
-Notable features:
+Notable shortcuts:
 
 Bundle       | Trigger         | Description
 ------------ | -------------   | -----------
-EditorConfig | .editorconfig   | http://editorconfig.org/#example-file
 vim-eunuch   | :Remove         | Delete file
 vim-eunuch   | :Move           | Rename file
 ctrlp.vim    | Ctrl + P        | Fuzzy file finder
@@ -38,6 +37,12 @@ surround.vim | cs'"            | Replace surrounding " with '
 EasyMotion   | ,,w             | Visual motion selection
 fugitive.vim | :Gcommit        |
 (dotfiles)   | Ctrl + L        | Clear search results
+
+Other features:
+
+* vim-airline statusline (always visible)
+* Configure per-filetype identation style in `.editorconfig`, see the EditorConfig [example file](http://editorconfig.org/#example-file).
+* Swap files are kept in `~/.vim/swap` (see option [`directory`](http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27)) instead of littering the file's parent directory.
 
 ## Themes
 

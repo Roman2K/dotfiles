@@ -1,0 +1,14 @@
+[user]
+	email = roman.lenegrate@gmail.com
+	name = Roman Le Négrate
+[color]
+	ui = auto
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[color "diff"]
+	meta = yellow
+	frag = magenta
+	old = red reverse
+	new = green reverse

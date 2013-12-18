@@ -31,6 +31,7 @@ Tabular.vim  | :Tab /=         | https://github.com/godlygeek/tabular
 Tabular.vim  | ,=              | Align on =
 Tabular.vim  | ,:              | Align on :
 undotree     | :UndotreeToggle |
+surround.vim | cs'"            | Replace surrounding " with '
 (dotfiles)   | Ctrl + L        | Clear search results
 
 ## Themes

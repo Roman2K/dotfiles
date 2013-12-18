@@ -37,6 +37,7 @@ colorscheme hybrid
 ""
 " Config
 "
+set list
 let mapleader=','
 nmap <Leader>= :Tab /=<CR>
 vmap <Leader>= :Tab /=<CR>

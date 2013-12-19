@@ -1,4 +1,14 @@
-## Install
+## tmux
+
+### Install
+
+    $ cd
+    $ ln -s code/dotfiles/tmux .tmux
+    $ ln -s .tmux/tmux.conf .tmux.conf
+
+## Vim
+
+### Install
 
     $ cd
     $ ln -s code/dotfiles/vimrc .vimrc
@@ -6,7 +16,7 @@
     $ git clone https://github.com/gmarik/vundle .vim/bundle/vundle
     $ vim +BundleInstall +BundleClean +qa
 
-## Bundles
+### Bundles
 
 * [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
 * [eunuch.vim](https://github.com/tpope/vim-eunuch)
@@ -45,7 +55,7 @@ Other features:
 * Configure per-filetype identation style in `.editorconfig`, see the EditorConfig [example file](http://editorconfig.org/#example-file).
 * Swap files are kept in `~/.vim/swap` (see option [`directory`](http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27)) instead of littering the file's parent directory.
 
-## Themes
+### Themes
 
 * [Solarized](https://github.com/altercation/vim-colors-solarized)
 * [hybrid.vim](https://github.com/w0ng/vim-hybrid)
@@ -55,7 +65,7 @@ colorscheme | Terminal.app settings
 solarized   | Solarized Dark.terminal
 hybrid      | Hybrid.terminal
 
-## Syntax highlighting
+### Syntax highlighting
 
 * [vim-javascript](https://github.com/pangloss/vim-javascript)
 * [vim-coffee-script](https://github.com/kchmck/vim-coffee-script)

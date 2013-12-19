@@ -45,10 +45,18 @@ colorscheme hybrid
 " Config
 "
 exec 'set directory='.root.'/swap,.'
+set modeline
+set modelines=1
+set bs=2
 set number
 set laststatus=2
-set list
 set hlsearch
+set cursorline
+set textwidth=80
+set nowrap
+if exists('+colorcolumn')
+  set colorcolumn=+1
+endif
 let mapleader=','
 nmap <Leader>= :Tab /=<CR>
 vmap <Leader>= :Tab /=<CR>

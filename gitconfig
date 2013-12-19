@@ -1,6 +1,8 @@
 [user]
 	email = roman.lenegrate@gmail.com
 	name = Roman Le Négrate
+[push]
+	default = upstream
 [color]
 	ui = auto
 [color "status"]

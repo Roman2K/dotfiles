@@ -68,6 +68,11 @@ alias di='git diff'
 alias a='git add'
 alias co='git commit'
 
+# OS X copy-paste
+# http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
+alias pbcopy='reattach-to-user-namespace pbcopy'
+alias pbpaste='reattach-to-user-namespace pbpaste'
+
 # Colors
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

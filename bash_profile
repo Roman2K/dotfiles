@@ -59,6 +59,7 @@ export PATH="$BIN:$PATH"
 # Vim
 export EDITOR='vim'
 alias vi='vim'
+alias v='vim'
 
 # Shortcuts
 alias r='exec bash -l'
@@ -81,11 +82,11 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 PROMPT_COMMAND='ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
 function ps1() {
+  local last=$?
 	local RED="\[\033[0;31m\]"
 	local GREEN="\[\033[0;32m\]"
 	local YELLOW="\[\033[0;33m\]"
 	local NORMAL="\[\033[0m\]"
-  local last=$?
   local cwd=$(pwd)
   local wd=${cwd#$HOME}
   [ "$wd" = "$cwd" ] || wd="~$wd"

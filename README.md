@@ -1,6 +1,7 @@
 ## Install
 
     $ cd
+    $ ln -s code/dotfiles/vimrc .vimrc
     $ mkdir -p .vim/{bundle,swap}
     $ git clone https://github.com/gmarik/vundle .vim/bundle/vundle
     $ vim +BundleInstall +BundleClean +qa

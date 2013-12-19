@@ -6,6 +6,8 @@
     $ ln -s code/dotfiles/tmux .tmux
     $ ln -s .tmux/tmux.conf .tmux.conf
 
+Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
+
 ## Vim
 
 ### Install

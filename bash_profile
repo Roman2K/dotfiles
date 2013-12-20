@@ -22,7 +22,16 @@ add_opt() {
 	}
 	[ -d "$d/etc/bash_completion.d" ] && {
 		for f in "$d/etc/bash_completion.d"/*
-		do source "$f"
+		do
+			case "$(basename "$f")" in
+				"ag.bashcomp.sh")
+					# syntax errors, skip
+					continue;
+					;;
+				*)
+					source "$f"
+					;;
+			esac
 		done
 	}
 }

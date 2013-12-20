@@ -76,6 +76,7 @@ alias st='git status'
 alias di='git diff'
 alias a='git add'
 alias co='git commit'
+alias lo='git log'
 
 # OS X copy-paste
 # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session

@@ -14,7 +14,6 @@ add_opt() {
 		# http://stackoverflow.com/a/4250665
 		export LIBRARY_PATH="$homebrew/lib:$LIBRARY_PATH"
 		export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-		export DYLD_FALLBACK_LIBRARY_PATH="$d/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 	}
 	[ -d "$d/include" ] && {
 		export CPATH="$d/include:$CPATH"

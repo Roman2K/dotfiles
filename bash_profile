@@ -2,7 +2,8 @@ OPT=$HOME/opt
 HOMEBREW=$LOCAL/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
-BIN=$HOME/code/bin
+CODE=$HOME/code
+BIN=$CODE/bin
 PYTHON=$HOME/Library/Python
 
 add_opt() {
@@ -77,6 +78,10 @@ alias di='git diff'
 alias a='git add'
 alias co='git commit'
 alias lo='git log'
+
+code-sanity() {
+	"$CODE"/code-sanity/bin/code-sanity "$HOME"/.code-sanity.json
+}
 
 # OS X copy-paste
 # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session

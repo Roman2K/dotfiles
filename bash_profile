@@ -13,7 +13,7 @@ add_opt() {
 	[ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
 	[ -d "$d/lib" ] && {
 		# http://stackoverflow.com/a/4250665
-		export LIBRARY_PATH="$homebrew/lib:$LIBRARY_PATH"
+		export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
 		export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
 	}
 	[ -d "$d/include" ] && {

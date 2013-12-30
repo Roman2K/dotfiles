@@ -16,11 +16,6 @@ add_opt() {
 		export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
 		export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
 	}
-	[ -d "$d/include" ] && {
-		export CPATH="$d/include:$CPATH"
-		export C_INCLUDE_PATH="$d/include:$C_INCLUDE_PATH"
-		export CPLUS_INCLUDE_PATH="$d/include:$CPLUS_INCLUDE_PATH"
-	}
 	[ -d "$d/etc/bash_completion.d" ] && {
 		for f in "$d/etc/bash_completion.d"/*
 		do

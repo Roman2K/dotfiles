@@ -73,6 +73,7 @@ alias di='git diff'
 alias a='git add'
 alias co='git commit'
 alias lo='git log'
+alias b='bundle exec'
 
 code-sanity() {
 	"$CODE"/code-sanity/bin/code-sanity "$HOME"/.code-sanity.json

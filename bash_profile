@@ -57,6 +57,9 @@ export PATH="$NDENV/shims:$PATH"
 # Node.js
 export PATH="node_modules/.bin:$PATH"
 
+# Java
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+
 # bin/
 export PATH="$BIN:$PATH"
 

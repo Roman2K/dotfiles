@@ -10,5 +10,8 @@ indent_size = 2
 [*.{rb,js,py}]
 indent_style = space
 
+[*.gemspec]
+indent_style = space
+
 [*.{md,markdown}]
 indent_style = space

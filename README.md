@@ -1,22 +1,16 @@
+## Install
+
+    $ tools/install
+
+## Uninstall
+
+    $ tools/uninstall
+
 ## tmux
-
-### Install
-
-    $ cd
-    $ ln -s code/dotfiles/tmux .tmux
-    $ ln -s .tmux/tmux.conf .tmux.conf
 
 Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 
 ## Vim
-
-### Install
-
-    $ cd
-    $ ln -s code/dotfiles/vimrc .vimrc
-    $ mkdir -p .vim/{bundle,swap}
-    $ git clone https://github.com/gmarik/vundle .vim/bundle/vundle
-    $ vim +BundleInstall +BundleClean +qa
 
 ### Bundles
 

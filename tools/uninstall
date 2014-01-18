@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+root=$(dirname "$0")/..
+
+cd "$HOME"
+
+cat "$root"/list | while read name; do
+	rm -v .$name
+done
+
+# tmux
+rm -v .tmux.conf
+
+# Vim
+rm -v -rf .vim

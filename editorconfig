@@ -13,5 +13,5 @@ indent_style = space
 [*.gemspec]
 indent_style = space
 
-[*.{md,markdown}]
+[*.{md,markdown,jade}]
 indent_style = space

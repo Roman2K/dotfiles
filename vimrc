@@ -31,6 +31,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'elzr/vim-json'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'plasticboy/vim-markdown'
 
 ""
 " Themes
@@ -64,6 +65,7 @@ nmap <Leader>: :Tab /:\zs<CR>
 vmap <Leader>: :Tab /:\zs<CR>
 vmap <Leader>t :Tab /\|<CR>
 nmap <C-l> :nohlsearch<CR>
+let g:vim_markdown_folding_disabled=1
 
 ""
 " wildmenu

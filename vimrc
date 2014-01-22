@@ -32,6 +32,7 @@ Bundle 'elzr/vim-json'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'evanmiller/nginx-vim-syntax'
 
 ""
 " Themes

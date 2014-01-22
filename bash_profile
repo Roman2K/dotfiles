@@ -108,3 +108,9 @@ function ps1() {
   local git=$(__git_ps1 " ${YELLOW}%s${NORMAL}")
   PS1="${wd}${git}${last_status_color} •${NORMAL} "
 }
+
+# gist
+function gist() {
+	d="$OPT"/gist
+	ruby -I "$d"/lib "$d"/bin/gist "$@"
+}

@@ -26,13 +26,14 @@ Bundle 'mbbill/undotree'
 Bundle 'tpope/vim-surround'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-commentary'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elzr/vim-json'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'w0ng/vim-hybrid'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'w0ng/vim-hybrid'
 
 ""
 " Themes

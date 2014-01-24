@@ -69,6 +69,11 @@ nmap <C-l> :nohlsearch<CR>
 let g:vim_markdown_folding_disabled=1
 
 ""
+" CtrlP
+"
+let g:ctrlp_cmd = 'CtrlPLastMode'
+
+""
 " wildmenu
 " http://stackoverflow.com/a/526940
 "

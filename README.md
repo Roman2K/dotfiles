@@ -25,6 +25,7 @@ Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 * [surround.vim](https://github.com/tpope/vim-surround)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [fugitive.vim](https://github.com/tpope/vim-fugitive)
+* [commentary.vim](https://github.com/tpope/vim-commentary)
 
 Notable shortcuts:
 
@@ -66,3 +67,5 @@ hybrid      | Hybrid.terminal
 * [vim-javascript](https://github.com/pangloss/vim-javascript)
 * [vim-coffee-script](https://github.com/kchmck/vim-coffee-script)
 * [vim-json](https://github.com/elzr/vim-json)
+* [vim-markdown](https://github.com/plasticboy/vim-markdown)
+* [nginx-vim-syntax](https://github.com/evanmiller/nginx-vim-syntax)

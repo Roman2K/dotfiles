@@ -114,3 +114,7 @@ function gist() {
 	d="$OPT"/gist
 	ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
+
+# Rails
+alias c="bundle exec rails console"
+alias rmap="(cd $HOME/map/services && mg restart map)"

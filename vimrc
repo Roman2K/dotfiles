@@ -48,6 +48,7 @@ silent! colorscheme hybrid
 " Config
 "
 exec 'set directory='.root.'/swap,.'
+runtime macros/matchit.vim
 set modeline
 set modelines=1
 set bs=2

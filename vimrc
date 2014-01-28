@@ -73,7 +73,7 @@ let g:vim_markdown_folding_disabled=1
 ""
 " CtrlP
 "
-let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 ""
 " wildmenu

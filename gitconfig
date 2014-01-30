@@ -14,3 +14,5 @@
 	frag = magenta
 	old = red reverse
 	new = green reverse
+[merge]
+	tool = vimdiff

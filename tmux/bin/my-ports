@@ -10,7 +10,7 @@ PORTS_REGEXP=$(cat "$ROOT_DIR"/conf/my-ports)
 
 lsof -l -P -n -iTCP -sTCP:LISTEN \
   | sed -E '1d; s/.*:([0-9]+) \(LISTEN\).*/\1/' \
-  | egrep "$PORTS_REGEXP\b" \
+  | egrep "\b$PORTS_REGEXP\b" \
   | sort -n \
   | uniq \
   | join_str ", "

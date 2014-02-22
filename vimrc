@@ -34,6 +34,7 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'digitaltoad/vim-jade'
 
 ""
 " Themes

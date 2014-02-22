@@ -1,5 +1,4 @@
 OPT=$HOME/opt
-HOMEBREW=$LOCAL/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
 CODE=$HOME/code

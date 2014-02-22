@@ -2,24 +2,24 @@
 
 root=$(dirname "$0")/..
 root=$(ruby -e "puts File.expand_path(ARGV[0])" "$root") || {
-	echo "Missing 'ruby'" >&2
-	exit 1
+  echo "Missing 'ruby'" >&2
+  exit 1
 }
 
 cd "$HOME"
 
 cat "$root"/list | while read name; do
-	src="$root"/$name
-	dst=.$name
-	[ -e "$src" ] || {
-		echo "Missing source file: $src" >&2
-		continue
-	}
-	[ ! -e "$dst" ] || {
-		echo "Already existing destination file: $dst" >&2
-		continue
-	}
-	ln -v -s "$src" "$dst"
+  src="$root"/$name
+  dst=.$name
+  [ -e "$src" ] || {
+    echo "Missing source file: $src" >&2
+    continue
+  }
+  [ ! -e "$dst" ] || {
+    echo "Already existing destination file: $dst" >&2
+    continue
+  }
+  ln -v -s "$src" "$dst"
 done
 
 # tmux
@@ -30,12 +30,12 @@ ln -v -s .tmux/tmux.conf .tmux.conf
 echo "Installing Vim config files"
 mkdir -v -p .vim/{bundle,swap}
 [ -d .vim/bundle/vundle/.git ] || {
-	git clone https://github.com/gmarik/vundle .vim/bundle/vundle || {
-		echo "Failed to clone 'vundle'" >&2
-		exit 1
-	}
+  git clone https://github.com/gmarik/vundle .vim/bundle/vundle || {
+    echo "Failed to clone 'vundle'" >&2
+    exit 1
+  }
 }
 vim +BundleInstall +BundleClean +qa || {
-	echo "Failed to install vundle bundles" >&2
-	exit 1
+  echo "Failed to install vundle bundles" >&2
+  exit 1
 }

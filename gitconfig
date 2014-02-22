@@ -1,18 +1,18 @@
 [user]
-	email = roman.lenegrate@gmail.com
-	name = Roman Le Négrate
+  email = roman.lenegrate@gmail.com
+  name = Roman Le Négrate
 [push]
-	default = upstream
+  default = upstream
 [color]
-	ui = auto
+  ui = auto
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [color "diff"]
-	meta = yellow
-	frag = magenta
-	old = red reverse
-	new = green reverse
+  meta = yellow
+  frag = magenta
+  old = red reverse
+  new = green reverse
 [merge]
-	tool = vimdiff
+  tool = vimdiff

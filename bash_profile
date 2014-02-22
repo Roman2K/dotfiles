@@ -7,29 +7,29 @@ BIN=$CODE/bin
 PYTHON=$HOME/Library/Python
 
 add_opt() {
-	local d=$1
-	[ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
-	[ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
-	[ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
-	[ -d "$d/lib" ] && {
-		# http://stackoverflow.com/a/4250665
-		export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-		export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-	}
-	[ -d "$d/etc/bash_completion.d" ] && {
-		for f in "$d/etc/bash_completion.d"/*
-		do
-			case "$(basename "$f")" in
-				"ag.bashcomp.sh")
-					# syntax errors, skip
-					continue;
-					;;
-				*)
-					source "$f"
-					;;
-			esac
-		done
-	}
+  local d=$1
+  [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
+  [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
+  [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
+  [ -d "$d/lib" ] && {
+    # http://stackoverflow.com/a/4250665
+    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+  }
+  [ -d "$d/etc/bash_completion.d" ] && {
+    for f in "$d/etc/bash_completion.d"/*
+    do
+      case "$(basename "$f")" in
+        "ag.bashcomp.sh")
+          # syntax errors, skip
+          continue;
+          ;;
+        *)
+          source "$f"
+          ;;
+      esac
+    done
+  }
 }
 
 # ~/opt
@@ -40,10 +40,10 @@ done
 # Python
 # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
 [ -d "$PYTHON" ] && {
-	while read dir
-	do
-		export PATH="$dir:$PATH"
-	done < <(find "$PYTHON" -maxdepth 2 -name bin)
+  while read dir
+  do
+    export PATH="$dir:$PATH"
+  done < <(find "$PYTHON" -maxdepth 2 -name bin)
 }
 
 # rbenv
@@ -79,7 +79,7 @@ alias lo='git log'
 alias b='bundle exec'
 
 code-sanity() {
-	"$CODE"/code-sanity/bin/code-sanity "$HOME"/.code-sanity.json
+  "$CODE"/code-sanity/bin/code-sanity "$HOME"/.code-sanity.json
 }
 
 # OS X copy-paste
@@ -96,10 +96,10 @@ PROMPT_COMMAND='ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
 function ps1() {
   local last=$?
-	local RED="\[\033[0;31m\]"
-	local GREEN="\[\033[0;32m\]"
-	local YELLOW="\[\033[0;33m\]"
-	local NORMAL="\[\033[0m\]"
+  local RED="\[\033[0;31m\]"
+  local GREEN="\[\033[0;32m\]"
+  local YELLOW="\[\033[0;33m\]"
+  local NORMAL="\[\033[0m\]"
   local cwd=$(pwd)
   local wd=${cwd#$HOME}
   [ "$wd" = "$cwd" ] || wd="~$wd"
@@ -111,8 +111,8 @@ function ps1() {
 
 # gist
 function gist() {
-	d="$OPT"/gist
-	ruby -I "$d"/lib "$d"/bin/gist "$@"
+  d="$OPT"/gist
+  ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
 
 # Rails

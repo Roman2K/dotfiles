@@ -63,28 +63,26 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 export PATH="$BIN:$PATH"
 
 # Vim
-export EDITOR='vim'
-alias vi='vim'
-alias v='vim'
+export EDITOR="vim"
+alias vi="vim"
+alias v="vim"
 
 # Shortcuts
-alias r='exec bash -l'
-alias ll='ls -lph'
-alias st='git status'
-alias di='git diff'
-alias a='git add'
-alias co='git commit'
-alias lo='git log'
-alias b='bundle exec'
-
-code-sanity() {
-  "$CODE"/code-sanity/bin/code-sanity "$HOME"/.code-sanity.json
-}
+alias r="exec bash -l"
+alias ll="ls -lph"
+alias st="git status"
+alias di="git diff"
+alias a="git add"
+alias co="git commit"
+alias lo="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias b="bundle exec"
+alias c="b rails c"
+alias sp="b rspec --format progress --colour"
 
 # OS X copy-paste
 # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
-alias pbcopy='reattach-to-user-namespace pbcopy'
-alias pbpaste='reattach-to-user-namespace pbpaste'
+alias pbcopy="reattach-to-user-namespace pbcopy"
+alias pbpaste="reattach-to-user-namespace pbpaste"
 
 # Colors
 export CLICOLOR=1
@@ -113,7 +111,3 @@ function gist() {
   d="$OPT"/gist
   ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
-
-# Rails
-alias c="bundle exec rails console"
-alias rmap="(cd $HOME/map/services && mg restart map)"

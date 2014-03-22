@@ -75,6 +75,7 @@ let g:vim_markdown_folding_disabled=1
 " CtrlP
 "
 let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_user_command = 'ag %s -l -g "" --nocolor'
 
 ""
 " wildmenu

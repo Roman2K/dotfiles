@@ -26,6 +26,7 @@ Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [fugitive.vim](https://github.com/tpope/vim-fugitive)
 * [commentary.vim](https://github.com/tpope/vim-commentary)
+* [ag.vim](https://github.com/rking/ag.vim)
 
 Notable shortcuts:
 
@@ -54,13 +55,13 @@ Other features:
 
 ### Themes
 
-* [Solarized](https://github.com/altercation/vim-colors-solarized)
 * [hybrid.vim](https://github.com/w0ng/vim-hybrid)
+* [Solarized](https://github.com/altercation/vim-colors-solarized)
 
 colorscheme | Terminal.app settings
 ----------- | ---------------------
-solarized   | Solarized Dark.terminal
 hybrid      | Hybrid.terminal
+solarized   | Solarized Dark.terminal
 
 ### Syntax highlighting
 
@@ -69,3 +70,5 @@ hybrid      | Hybrid.terminal
 * [vim-json](https://github.com/elzr/vim-json)
 * [vim-markdown](https://github.com/plasticboy/vim-markdown)
 * [nginx-vim-syntax](https://github.com/evanmiller/nginx-vim-syntax)
+* [vim-jade](https://github.com/digitaltoad/vim-jade)
+* [stylus.vim](https://github.com/wavded/vim-stylus)

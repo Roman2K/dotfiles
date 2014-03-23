@@ -111,3 +111,6 @@ function gist() {
   d="$OPT"/gist
   ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
+
+# cddb
+source "$CODE/cddb/bashcomp.sh"

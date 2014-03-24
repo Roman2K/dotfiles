@@ -16,24 +16,18 @@ add_opt() {
     export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
   }
   [ -d "$d/etc/bash_completion.d" ] && {
-    for f in "$d/etc/bash_completion.d"/*
-    do
-      case "$(basename "$f")" in
-        "ag.bashcomp.sh")
-          # syntax errors, skip
-          continue;
-          ;;
-        *)
-          source "$f"
-          ;;
+    for f in "$d/etc/bash_completion.d"/*; do
+      case "$f" in
+        */homebrew/etc/bash_completion.d/ag.bashcomp.sh) continue ;;
       esac
+      source "$f"
     done
   }
 }
 
 # ~/opt
-for d in "$OPT"/*
-do add_opt "$d"
+for d in "$OPT"/*; do
+  add_opt "$d"
 done
 
 # Python

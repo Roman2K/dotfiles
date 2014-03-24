@@ -76,6 +76,11 @@ nmap <C-l> :nohlsearch<CR>
 let g:vim_markdown_folding_disabled=1
 
 ""
+" ,r Reload active Chrome tab
+"
+nmap <Leader>r :execute "let _ = system('chrome-cli reload')"<CR>
+
+""
 " CtrlP
 "
 let g:ctrlp_cmd = 'CtrlPMixed'

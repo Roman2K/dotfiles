@@ -46,7 +46,7 @@ surround.vim | cs'"            | Replace surrounding " with '
 EasyMotion   | ,,w             | Visual motion selection
 fugitive.vim | :Gcommit        |
 (dotfiles)   | Ctrl + L        | Clear search results
-(dotfiles)   | ,r              | Reload active Chrome tab
+(dotfiles)   | ,r              | Run ./reload
 
 Other features:
 

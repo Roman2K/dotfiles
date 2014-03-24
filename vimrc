@@ -76,9 +76,10 @@ nmap <C-l> :nohlsearch<CR>
 let g:vim_markdown_folding_disabled=1
 
 ""
-" ,r Reload active Chrome tab
+" ,r Run ./reload
 "
-nmap <Leader>r :execute "let _ = system('chrome-cli reload')"<CR>
+command Reload execute "let _ = system('./reload')"
+nmap <Leader>r :Reload<CR>
 
 ""
 " CtrlP

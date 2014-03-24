@@ -1,4 +1,5 @@
 OPT=$HOME/opt
+HOMEBREW=$OPT/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
 CODE=$HOME/code
@@ -56,10 +57,11 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 # bin/
 export PATH="$BIN:$PATH"
 
-# Vim
-export EDITOR="vim"
-alias vi="vim"
-alias v="vim"
+# Neovim
+export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
+export EDITOR="nvim"
+alias vim=$EDITOR
+alias vi=$EDITOR
 
 # Shortcuts
 alias r="exec bash -l"

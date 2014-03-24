@@ -57,6 +57,9 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 # bin/
 export PATH="$BIN:$PATH"
 
+# Homebrew
+source "$HOMEBREW"/Library/Contributions/brew_bash_completion.sh
+
 # Neovim
 export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
 export EDITOR="nvim"

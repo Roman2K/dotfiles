@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
-root=$(dirname "$0")/..
+. $(dirname "$0")/common.sh
 
 cd "$HOME"
 
-cat "$root"/list | while read name; do
-  rm -v .$name
+cat "$ROOT"/list | while read name; do
+  f=.$name
+  echo "$name: removing $f"
+  rm -v "$f"
 done
 
 # tmux
+echo "tmux: uninstalling"
 rm -v .tmux.conf
 
+# Neovim
+echo "Neovim: unlinking from Vim config"
+rm -v .nvimrc
+
 # Vim
+echo "Vim: uninstalling"
 rm -v -rf .vim

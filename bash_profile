@@ -107,7 +107,7 @@ function ps1() {
 
 # gist
 function gist() {
-  d="$OPT"/gist
+  local d="$OPT"/gist
   ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
 

@@ -14,6 +14,12 @@ done
 echo "tmux: uninstalling"
 rm -v .tmux.conf
 
+# fish
+echo "fish: uninstalling"
+dst=.config/fish
+rm -v "$dst"/config.fish
+rm -v "$dst"/functions
+
 # Neovim
 echo "Neovim: unlinking from Vim config"
 rm -v .nvimrc

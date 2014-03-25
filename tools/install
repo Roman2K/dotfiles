@@ -23,6 +23,18 @@ done
 echo "tmux: installing"
 ln -v -s .tmux/tmux.conf .tmux.conf
 
+# fish
+echo "fish: installing"
+src="$ROOT"/fish
+dst=.config/fish
+mkdir -p "$dst"
+ln -v -s "$src"/config.fish "$dst"
+if [ -d "$dst"/functions ]; then
+  echo "fish: $dst/functions already exists, not overwriting" >&2
+else
+  ln -v -s "$src"/functions "$dst"
+fi
+
 # Neovim
 echo "Neovim: linking to Vim config"
 ln -v -s .vimrc .nvimrc

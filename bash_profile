@@ -1,4 +1,5 @@
 OPT=$HOME/opt
+HOMEBREW=$OPT/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
 CODE=$HOME/code
@@ -16,24 +17,18 @@ add_opt() {
     export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
   }
   [ -d "$d/etc/bash_completion.d" ] && {
-    for f in "$d/etc/bash_completion.d"/*
-    do
-      case "$(basename "$f")" in
-        "ag.bashcomp.sh")
-          # syntax errors, skip
-          continue;
-          ;;
-        *)
-          source "$f"
-          ;;
+    for f in "$d/etc/bash_completion.d"/*; do
+      case "$f" in
+        */homebrew/etc/bash_completion.d/ag.bashcomp.sh) continue ;;
       esac
+      source "$f"
     done
   }
 }
 
 # ~/opt
-for d in "$OPT"/*
-do add_opt "$d"
+for d in "$OPT"/*; do
+  add_opt "$d"
 done
 
 # Python
@@ -62,10 +57,14 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 # bin/
 export PATH="$BIN:$PATH"
 
-# Vim
-export EDITOR="vim"
-alias vi="vim"
-alias v="vim"
+# Homebrew
+source "$HOMEBREW"/Library/Contributions/brew_bash_completion.sh
+
+# Neovim
+export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
+export EDITOR="nvim"
+alias vim=$EDITOR
+alias vi=$EDITOR
 
 # Shortcuts
 alias r="exec bash -l"

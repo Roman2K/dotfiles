@@ -77,6 +77,12 @@ nmap <C-l> :nohlsearch<CR>
 let g:vim_markdown_folding_disabled=1
 
 ""
+" ,r Run ./reload
+"
+command Reload execute "let _ = system('./reload')"
+nmap <Leader>r :Reload<CR>
+
+""
 " CtrlP
 "
 let g:ctrlp_cmd = 'CtrlPMixed'

@@ -3,6 +3,7 @@ set HOMEBREW $OPT/homebrew
 set RBENV $HOME/.rbenv
 set NDENV $HOME/.ndenv
 set CODE $HOME/code
+set MAP $HOME/map
 set BIN $CODE/bin
 
 function add_opt
@@ -46,6 +47,9 @@ set -x JAVA_HOME "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 
 # bin/
 prepend_valid_dir PATH $BIN
+
+# cd
+set -x CDPATH . ~ $CODE $MAP
 
 # Neovim
 set -x VIMRUNTIME $HOMEBREW/share/vim/vim74

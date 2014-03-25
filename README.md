@@ -72,3 +72,4 @@ solarized   | Solarized Dark.terminal
 * [nginx-vim-syntax](https://github.com/evanmiller/nginx-vim-syntax)
 * [vim-jade](https://github.com/digitaltoad/vim-jade)
 * [stylus.vim](https://github.com/wavded/vim-stylus)
+* [vim-fish](https://github.com/dag/vim-fish)

@@ -16,14 +16,6 @@ add_opt() {
     export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
     export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
   }
-  [ -d "$d/etc/bash_completion.d" ] && {
-    for f in "$d/etc/bash_completion.d"/*; do
-      case "$f" in
-        */homebrew/etc/bash_completion.d/ag.bashcomp.sh) continue ;;
-      esac
-      source "$f"
-    done
-  }
 }
 
 # ~/opt
@@ -58,7 +50,7 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 export PATH="$BIN:$PATH"
 
 # Homebrew
-source "$HOMEBREW"/Library/Contributions/brew_bash_completion.sh
+source "$HOMEBREW"/etc/bash_completion
 
 # Neovim
 export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
@@ -113,3 +105,8 @@ function gist() {
 
 # cddb
 source "$CODE/cddb/bashcomp.sh"
+
+# Go
+export GOROOT=$(go env GOROOT)
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"

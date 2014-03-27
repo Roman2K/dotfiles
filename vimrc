@@ -40,6 +40,12 @@ Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'dag/vim-fish'
+Bundle 'zaiste/tmux.vim'
+
+""
+" Go
+"
+set runtimepath+=$GOROOT/misc/vim
 
 ""
 " Themes

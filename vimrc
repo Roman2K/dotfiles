@@ -41,6 +41,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 Bundle 'dag/vim-fish'
 Bundle 'zaiste/tmux.vim'
+Bundle 'groenewege/vim-less'
 
 ""
 " Go

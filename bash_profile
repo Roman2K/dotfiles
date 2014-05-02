@@ -3,6 +3,7 @@ HOMEBREW=$OPT/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
 CODE=$HOME/code
+MAP=$HOME/map
 BIN=$CODE/bin
 PYTHON=$HOME/Library/Python
 
@@ -69,6 +70,9 @@ alias lo="git log --graph --abbrev-commit --date=relative"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour"
+
+# cd
+export CDPATH=".:$CODE:$MAP"
 
 # OS X copy-paste
 # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session

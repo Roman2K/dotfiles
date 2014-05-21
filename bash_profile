@@ -107,9 +107,6 @@ function gist() {
   ruby -I "$d"/lib "$d"/bin/gist "$@"
 }
 
-# cddb
-source "$CODE/cddb/bashcomp.sh"
-
 # Go
 export GOROOT=$(go env GOROOT)
 export GOPATH="$HOME/.go"

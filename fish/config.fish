@@ -78,6 +78,3 @@ alias pbpaste "reattach-to-user-namespace pbpaste"
 set -x CLICOLOR 1
 set -x GREP_OPTIONS "--color=auto"
 set -x GREP_COLOR "1;31"
-
-# cddb
-source $CODE/cddb/complete.fish

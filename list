@@ -3,6 +3,7 @@ editorconfig
 editrc
 gitconfig
 irbrc
+pryrc
 tmux
 vimrc
 gemrc

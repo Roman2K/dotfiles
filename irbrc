@@ -4,8 +4,4 @@ IRB.conf[:SAVE_HISTORY] = 1000
 # http://stackoverflow.com/a/1051411
 IRB.conf[:BACK_TRACE_LIMIT] = 100
 
-def bench(runs=1_000_000)
-  t1 = Time.now
-  runs.times { yield }
-  Time.now - t1
-end
+load Dir.home + '/code/dotfiles/ruby/console_utils.rb'

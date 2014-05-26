@@ -53,9 +53,10 @@ export PATH="$BIN:$PATH"
 # Homebrew
 source "$HOMEBREW"/etc/bash_completion
 
-# Neovim
-export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
-export EDITOR="nvim"
+# Vim / Neovim
+#export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
+#export EDITOR="nvim"
+export EDITOR="vim"
 alias vim=$EDITOR
 alias vi=$EDITOR
 
@@ -86,7 +87,7 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 # $PS1
 PROMPT_COMMAND='ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
-function ps1() {
+ps1() {
   local last=$?
   local RED="\[\033[0;31m\]"
   local GREEN="\[\033[0;32m\]"
@@ -102,9 +103,14 @@ function ps1() {
 }
 
 # gist
-function gist() {
+gist() {
   local d="$OPT"/gist
   ruby -I "$d"/lib "$d"/bin/gist "$@"
+}
+
+# JSON pretty-printing
+pretty_json() {
+  underscore print --color
 }
 
 # Go

@@ -10,15 +10,13 @@ cat "$ROOT"/list | while read name; do
   rm -v "$f"
 done
 
+# bash
+echo "bash: uninstalling"
+rm -v .bashrc
+
 # tmux
 echo "tmux: uninstalling"
 rm -v .tmux.conf
-
-# fish
-echo "fish: uninstalling"
-dst=.config/fish
-rm -v "$dst"/config.fish
-rm -v "$dst"/functions
 
 # Neovim
 echo "Neovim: unlinking from Vim config"

@@ -1,21 +1,36 @@
+case "$(uname)" in
+  "Linux") IS_LINUX=1;;
+  "Darwin") IS_OSX=1;;
+esac
+
 OPT=$HOME/opt
-HOMEBREW=$OPT/homebrew
 RBENV=$HOME/.rbenv
 NDENV=$HOME/.ndenv
 CODE=$HOME/code
 MAP=$HOME/map
 BIN=$CODE/bin
-PYTHON=$HOME/Library/Python
+
+[[ $IS_OSX ]] && {
+  HOMEBREW=$OPT/homebrew
+  PYTHON=$HOME/Library/Python
+}
+
+[[ $IS_LINUX ]] && {
+  . /usr/share/git/completion/git-prompt.sh
+}
 
 add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
-  [ -d "$d/lib" ] && {
-    # http://stackoverflow.com/a/4250665
-    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+
+  [[ $IS_OSX ]] && {
+    [ -d "$d/lib" ] && {
+      # http://stackoverflow.com/a/4250665
+      export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+      export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+    }
   }
 }
 
@@ -23,15 +38,6 @@ add_opt() {
 for d in "$OPT"/*; do
   add_opt "$d"
 done
-
-# Python
-# http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
-[ -d "$PYTHON" ] && {
-  while read dir
-  do
-    export PATH="$dir:$PATH"
-  done < <(find "$PYTHON" -maxdepth 2 -name bin)
-}
 
 # rbenv
 add_opt "$RBENV"
@@ -44,14 +50,8 @@ export PATH="$NDENV/shims:$PATH"
 # Node.js
 export PATH="node_modules/.bin:$PATH"
 
-# Java
-export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
-
 # bin/
 export PATH="$BIN:$PATH"
-
-# Homebrew
-source "$HOMEBREW"/etc/bash_completion
 
 # Vim / Neovim
 #export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
@@ -75,14 +75,10 @@ alias sp="b rspec --format progress --colour"
 # cd
 export CDPATH=".:$CODE:$MAP"
 
-# OS X copy-paste
-# http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
-alias pbcopy="reattach-to-user-namespace pbcopy"
-alias pbpaste="reattach-to-user-namespace pbpaste"
-
 # Colors
-export CLICOLOR=1
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+[[ $IS_OSX ]] && alias ls='ls -G'
+[[ $IS_LINUX ]] && alias ls='ls --color=auto'
 
 # $PS1
 PROMPT_COMMAND='ps1'
@@ -99,7 +95,8 @@ ps1() {
   local last_status_color
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${NORMAL}")
-  PS1="${wd}${git}${last_status_color} •${NORMAL} "
+  PS1="${wd}${git}${last_status_color} \$${NORMAL} "
+  [[ $IS_LINUX ]] && PS1="\u@\h:$PS1"
 }
 
 # gist
@@ -117,3 +114,26 @@ pretty_json() {
 export GOROOT=$(go env GOROOT)
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+
+[[ $IS_OSX ]] && {
+  # Python
+  # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
+  [ -d "$PYTHON" ] && {
+    while read dir; do
+      export PATH="$dir:$PATH"
+    done < <(find "$PYTHON" -maxdepth 2 -name bin)
+  }
+
+  # Java
+  export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+
+  # Homebrew
+  source "$HOMEBREW"/etc/bash_completion
+
+  # OS X copy-paste
+  # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
+  alias pbcopy="reattach-to-user-namespace pbcopy"
+  alias pbpaste="reattach-to-user-namespace pbpaste"
+}
+
+true

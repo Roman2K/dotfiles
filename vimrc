@@ -67,6 +67,7 @@ set hlsearch
 set cursorline
 set textwidth=80
 set nowrap
+set formatoptions-=t  " disable line wrapping
 if exists('+colorcolumn')
   set colorcolumn=+1
 endif

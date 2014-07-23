@@ -74,7 +74,7 @@ alias c="b rails c"
 alias sp="b rspec --format progress --colour"
 
 # cd
-export CDPATH=".:$CODE:$MAP"
+export CDPATH=".:$MAP:$CODE"
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

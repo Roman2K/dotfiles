@@ -116,6 +116,11 @@ export GOROOT=$(go env GOROOT)
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
+# HTTP proxy
+export http_proxy="http://localhost:22001/"
+export https_proxy=$http_proxy
+export no_proxy="localhost,127.0.0.1,.map.dev"
+
 [[ $IS_OSX ]] && {
   # Python
   # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell

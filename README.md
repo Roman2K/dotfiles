@@ -16,7 +16,7 @@ Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 
 * [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
 * [ctrlp.vim](https://github.com/kien/ctrlp.vim)
-* [YouCompleteMe](http://valloric.github.io/YouCompleteMe/)
+* [Supertab](https://github.com/ervandew/supertab)
 * [vim-airline](https://github.com/bling/vim-airline)
 * [surround.vim](https://github.com/tpope/vim-surround)
 * [fugitive.vim](https://github.com/tpope/vim-fugitive)
@@ -29,20 +29,20 @@ Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 
 Notable shortcuts:
 
-Bundle        | Trigger         | Description
-------------- | -------------   | -----------
-ctrlp.vim     | Ctrl + P        | Fuzzy file finder
-ctrlp.vim     | Ctrl + X        | Open match in horizontal split
-ctrlp.vim     | Ctrl + V        | Open match in vertical split
-YouCompleteMe | Tab             | Fuzzy autocomplete
-surround.vim  | cs'"            | Replace surrounding " with '
-fugitive.vim  | :Gcommit        |
-eunuch.vim    | :Remove         | Delete file
-eunuch.vim    | :Move           | Rename file
-undotree      | :UndotreeToggle |
-EasyMotion    | ,,w             | Visual motion selection
-(dotfiles)    | Ctrl + L        | Clear search results
-(dotfiles)    | ,r              | Run ./reload
+Bundle       | Trigger         | Description
+------------ | -------------   | -----------
+ctrlp.vim    | Ctrl + P        | Fuzzy file finder
+ctrlp.vim    | Ctrl + X        | Open match in horizontal split
+ctrlp.vim    | Ctrl + V        | Open match in vertical split
+Supertab     | Tab             | Autocomplete
+surround.vim | cs'"            | Replace surrounding " with '
+fugitive.vim | :Gcommit        |
+eunuch.vim   | :Remove         | Delete file
+eunuch.vim   | :Move           | Rename file
+undotree     | :UndotreeToggle |
+EasyMotion   | ,,w             | Visual motion selection
+(dotfiles)   | Ctrl + L        | Clear search results
+(dotfiles)   | ,r              | Run ./reload
 
 Other features:
 

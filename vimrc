@@ -40,6 +40,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'dag/vim-fish'
 Bundle 'zaiste/tmux.vim'
 Bundle 'groenewege/vim-less'
+Bundle 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 
 ""
 " Go
@@ -102,6 +103,11 @@ let g:syntastic_auto_loc_list = 1
 "
 set wildmenu
 set wildmode=longest,list
+
+""
+" Vagrant
+"
+autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
 ""
 " Vundle

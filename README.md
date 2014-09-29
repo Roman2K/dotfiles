@@ -71,3 +71,4 @@ hybrid      | Hybrid.terminal
 * [vim-fish](https://github.com/dag/vim-fish)
 * [tmux.vim](https://github.com/zaiste/tmux.vim)
 * [vim-less](https://github.com/groenewege/vim-less)
+* [Docker](https://github.com/docker/docker)

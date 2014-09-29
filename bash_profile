@@ -140,6 +140,12 @@ export no_proxy="localhost,127.0.0.1,.map.dev"
   # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
   alias pbcopy="reattach-to-user-namespace pbcopy"
   alias pbpaste="reattach-to-user-namespace pbpaste"
+
+  # VirtualBox
+  export PATH="/Applications/VirtualBox.app/Contents/MacOS:$PATH"
+
+  # Docker
+  export DOCKER_HOST="tcp://localhost:2375"
 }
 
 true

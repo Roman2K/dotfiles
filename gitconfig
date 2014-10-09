@@ -2,17 +2,20 @@
   email = roman.lenegrate@gmail.com
   name = Roman Le Négrate
 [push]
-  default = upstream
+  default = nothing
 [color]
   ui = auto
+[color "branch"]
+  current = 150
+  remote = 203
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+  added = 221
+  changed = 113
+  untracked = 111
 [color "diff"]
-  meta = yellow
-  frag = magenta
-  old = red reverse
-  new = green reverse
+  meta = 221
+  frag = 177
+  old = 210 reverse
+  new = 150 reverse
 [merge]
   tool = vimdiff

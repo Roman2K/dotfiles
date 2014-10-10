@@ -6,16 +6,16 @@
 [color]
   ui = auto
 [color "branch"]
-  current = 150
-  remote = 203
+  current = green
+  remote = red
 [color "status"]
-  added = 221
-  changed = 113
-  untracked = 111
+  added = yellow
+  changed = green
+  untracked = cyan
 [color "diff"]
-  meta = 221
-  frag = 177
-  old = 210 reverse
-  new = 150 reverse
+  meta = yellow
+  frag = magenta
+  old = red reverse
+  new = green reverse
 [merge]
   tool = vimdiff

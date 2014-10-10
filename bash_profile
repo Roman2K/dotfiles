@@ -68,7 +68,7 @@ alias di="git diff"
 alias dis="git diff --staged"
 alias a="git add"
 alias co="git commit"
-alias lo="git log --graph --abbrev-commit --date=relative"
+alias lg="git log --pretty=format:'%C(221)%h%Creset%C(111)%d%Creset %s %C(241)(%cd) %C(221)%an%Creset' --abbrev-commit"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour"
@@ -86,9 +86,9 @@ PROMPT_COMMAND='ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
 ps1() {
   local last=$?
-  local RED="\[\033[0;31m\]"
-  local GREEN="\[\033[0;32m\]"
-  local YELLOW="\[\033[0;33m\]"
+  local RED="\[\033[38;5;203m\]"
+  local GREEN="\[\033[38;5;113m\]"
+  local YELLOW="\[\033[38;5;221m\]"
   local NORMAL="\[\033[0m\]"
   local cwd=$(pwd)
   local wd=${cwd#$HOME}
@@ -96,7 +96,7 @@ ps1() {
   local last_status_color
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${NORMAL}")
-  PS1="${wd}${git}${last_status_color} \$${NORMAL} "
+  PS1="${wd}${git}${last_status_color} ❯${NORMAL} "
   [[ $IS_LINUX ]] && PS1="\u@\h:$PS1"
 }
 

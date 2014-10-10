@@ -111,11 +111,6 @@ pretty_json() {
   underscore print --color
 }
 
-# Go
-export GOROOT=$(go env GOROOT)
-export GOPATH="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH"
-
 [[ $IS_OSX ]] && {
   # Python
   # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell

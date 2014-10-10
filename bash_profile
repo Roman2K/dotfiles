@@ -139,7 +139,7 @@ pretty_json() {
 }
 
 # Bash profile
-find $HOME/.bash/ -mindepth 1 -maxdepth 1 -not -type d |
+find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d |
   while read f; do
     source "$f" || break
   done

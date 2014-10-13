@@ -50,6 +50,9 @@ export PATH="$NDENV/shims:$PATH"
 # Node.js
 export PATH="node_modules/.bin:$PATH"
 
+# Go
+export GOROOT=$(go env GOROOT)
+
 # bin/
 export PATH="$BIN:$PATH"
 

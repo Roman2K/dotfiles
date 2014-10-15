@@ -34,6 +34,10 @@ add_opt() {
   }
 }
 
+# Bash
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+
 # ~/opt
 for d in "$OPT"/*; do
   add_opt "$d"

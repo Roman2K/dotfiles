@@ -37,6 +37,7 @@ add_opt() {
 # Bash
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
+export CDPATH=".:$MAP:$CODE"
 
 # ~/opt
 for d in "$OPT"/*; do
@@ -75,13 +76,10 @@ alias di="git diff"
 alias dis="git diff --staged"
 alias a="git add"
 alias co="git commit"
-alias lg="git log --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %s %C(white)(%cd) %C(yellow)%an%Creset' --abbrev-commit"
+alias lg="git log --pretty=format:'%C(yellow)%h %C(white)%ci%Creset %s%C(blue)%d %C(yellow)%an%Creset' --abbrev-commit"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour"
-
-# cd
-export CDPATH=".:$MAP:$CODE"
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

@@ -8,3 +8,4 @@ pryrc
 tmux
 vimrc
 gemrc
+ssh_config .ssh/config

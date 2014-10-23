@@ -4,8 +4,8 @@
 
 cd "$HOME"
 
-cat "$ROOT"/list | while read name; do
-  f=.$name
+cat "$ROOT"/list | while read name f; do
+  [ "$f" ] || f=.$name
   echo "$name: removing $f"
   rm -v "$f"
 done

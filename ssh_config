@@ -1,0 +1,22 @@
+Host map.prod
+  Hostname 10.20.40.61
+  User ecommerce
+  ProxyCommand ssh map.preprod nc -q 60 %h %p
+
+Host map.preprod
+  Hostname map-preprod1.bearstech.com
+  User ecommerce
+
+Host map.print map.print.preprod
+  Hostname map-print-preprod.bearstech.com
+  User print
+
+Host crissic
+  Hostname crissic.romanlenegrate.net
+  #Hostname 162.220.13.98
+  User roman
+
+Host vlr
+  Hostname vlr.romanlenegrate.net
+  #Hostname 89.87.82.207
+  User roman

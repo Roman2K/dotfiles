@@ -4,9 +4,9 @@
 
 cd "$HOME"
 
-cat "$ROOT"/list | while read name; do
+cat "$ROOT"/list | while read name dst; do
   src="$ROOT"/$name
-  dst=.$name
+  [ "$dst" ] || dst=.$name
   echo "$name: adding $dst"
   [ -e "$src" ] || {
     echo "$name: missing source file: $src" >&2

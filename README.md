@@ -57,7 +57,7 @@ Other features:
 
 colorscheme | Terminal.app settings
 ----------- | ---------------------
-hybrid      | Hybrid.terminal
+hybrid      | hybrid.terminal
 
 ### Syntax highlighting
 

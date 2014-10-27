@@ -2,7 +2,7 @@
   email = roman.lenegrate@gmail.com
   name = Roman Le Négrate
 [push]
-  default = nothing
+  default = simple
 [color]
   ui = auto
 [color "branch"]

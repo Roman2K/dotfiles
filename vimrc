@@ -29,7 +29,6 @@ Bundle 'mbbill/undotree'
 Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'w0ng/vim-hybrid'
-Bundle 'cocopon/iceberg.vim'
 
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'

@@ -55,10 +55,6 @@ Other features:
 
 * [hybrid.vim](https://github.com/w0ng/vim-hybrid)
 
-colorscheme | Terminal.app settings
------------ | ---------------------
-hybrid      | hybrid.terminal
-
 ### Syntax highlighting
 
 * [vim-javascript](https://github.com/pangloss/vim-javascript)

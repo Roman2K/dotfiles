@@ -86,6 +86,8 @@ nmap <Leader>r :Reload<CR>
 "
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = 'ag %s -l -g "" --nocolor'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 
 ""
 " Syntastic
@@ -96,7 +98,10 @@ set statusline+=%*
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 2
-let g:syntastic_ruby_mri_quiet_messages = { "regex": '\m^shadowing outer local variable ' }
+let g:syntastic_ruby_mri_quiet_messages = { "regex": [
+  \ '\m^shadowing outer local variable ',
+  \ '\m`&'' interpreted as argument prefix'
+  \ ] }
 
 ""
 " wildmenu

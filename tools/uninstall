@@ -1,27 +1,4 @@
-#!/usr/bin/env bash
-
-. $(dirname "$0")/common.sh
-
-cd "$HOME"
-
-cat "$ROOT"/list | while read name f; do
-  [ "$f" ] || f=.$name
-  echo "$name: removing $f"
-  rm -v "$f"
-done
-
-# bash
-echo "bash: uninstalling"
-rm -v .bashrc
-
-# tmux
-echo "tmux: uninstalling"
-rm -v .tmux.conf
-
-# Neovim
-echo "Neovim: unlinking from Vim config"
-rm -v .nvimrc
-
-# Vim
-echo "Vim: uninstalling"
-rm -v -rf .vim
+#!/usr/bin/env ruby
+$:.unshift __dir__ + '/lib'
+require 'dotfiles'
+Dotfiles.with_each_installer(__dir__ + '/..', &:uninstall)

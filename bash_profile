@@ -69,6 +69,7 @@ alias vi=$EDITOR
 
 # Shortcuts
 alias r="exec bash -l"
+alias m="tmux"
 alias ll="ls -lph"
 alias st="git status"
 alias di="git diff"

@@ -3,6 +3,11 @@ Host map.prod
   User ecommerce
   ProxyCommand ssh map.preprod nc -q 60 %h %p
 
+Host map.staging
+  Hostname peloulou.bearstech.com
+  #Hostname staging.map.af83.com
+  User maphoto
+
 Host map.preprod
   Hostname map-preprod1.bearstech.com
   User ecommerce

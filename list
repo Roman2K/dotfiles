@@ -1,11 +1,14 @@
-bash_profile
-bash
-editorconfig
-editrc
-gitconfig
-irbrc
-pryrc
-tmux
-vimrc
-gemrc
-ssh_config .ssh/config
+S bash
+S bash_profile .bash_profile
+L .bash_profile .bashrc
+S editorconfig
+S editrc
+S gitconfig
+S irbrc
+S pryrc
+S tmux
+L .tmux/tmux.conf .tmux.conf
+S vimrc
+L .vimrc .nvimrc
+S gemrc
+S ssh_config .ssh/config

@@ -10,13 +10,13 @@ CODE=$HOME/code
 MAP=$HOME/map
 BIN=$CODE/bin
 
-[[ $IS_OSX ]] && {
+[ $IS_OSX ] && {
   HOMEBREW=$OPT/homebrew
   PYTHON=$HOME/Library/Python
 }
 
-[[ $IS_LINUX ]] && {
-  . /usr/share/git/completion/git-prompt.sh
+[ $IS_LINUX ] && {
+  source /usr/share/git/completion/git-prompt.sh
 }
 
 add_opt() {
@@ -25,7 +25,7 @@ add_opt() {
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
 
-  [[ $IS_OSX ]] && {
+  [ $IS_OSX ] && {
     [ -d "$d/lib" ] && {
       # http://stackoverflow.com/a/4250665
       export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
@@ -44,12 +44,16 @@ for d in "$OPT"/*; do
 done
 
 # rbenv
-add_opt "$RBENV"
-export PATH="$RBENV/shims:$PATH"
+[ -d "$RBENV" ] && {
+  add_opt "$RBENV"
+  export PATH="$RBENV/shims:$PATH"
+}
 
 # ndenv
-add_opt "$NDENV"
-export PATH="$NDENV/shims:$PATH"
+[ -d "$NDENV" ] && {
+  add_opt "$NDENV"
+  export PATH="$NDENV/shims:$PATH"
+}
 
 # Node.js
 export PATH="node_modules/.bin:$PATH"
@@ -93,8 +97,8 @@ export CDPATH=$(_build_cdpath)
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
-[[ $IS_OSX ]] && alias ls='ls -G'
-[[ $IS_LINUX ]] && alias ls='ls --color=auto'
+[ $IS_OSX ] && alias ls='ls -G'
+[ $IS_LINUX ] && alias ls='ls --color=auto'
 
 # $PS1
 PROMPT_COMMAND='ps1'
@@ -112,7 +116,7 @@ ps1() {
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
   PS1="${wd}${git}${last_status_color} ❯${RESET} "
-  [[ $IS_LINUX ]] && PS1="\u@\h:$PS1"
+  [ $IS_LINUX ] && PS1="\u@\h:$PS1"
 }
 
 # gist
@@ -126,10 +130,15 @@ pretty_json() {
   underscore print --color
 }
 
-[[ $IS_OSX ]] && {
+[ $IS_OSX ] && {
+  # Homebrew
+  [ "$HOMEBREW" ] && {
+    source "$HOMEBREW"/etc/bash_completion
+  }
+
   # Python
   # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
-  [ -d "$PYTHON" ] && {
+  [ "$PYTHON" ] && [ -d "$PYTHON" ] && {
     while read dir; do
       export PATH="$dir:$PATH"
     done < <(find "$PYTHON" -maxdepth 2 -name bin)
@@ -138,16 +147,14 @@ pretty_json() {
   # Java
   export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 
-  # Homebrew
-  source "$HOMEBREW"/etc/bash_completion
-
   # OS X copy-paste
   # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
   alias pbcopy="reattach-to-user-namespace pbcopy"
   alias pbpaste="reattach-to-user-namespace pbpaste"
 
   # VirtualBox
-  export PATH="/Applications/VirtualBox.app/Contents/MacOS:$PATH"
+  d="/Applications/VirtualBox.app/Contents/MacOS"
+  [ -d "$d" ] && export PATH="$d:$PATH"
 
   # Docker
   export DOCKER_HOST="tcp://localhost:2375"

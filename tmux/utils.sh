@@ -1,8 +1,7 @@
 function join_str() {
   sep=$1
   seplen=${#sep}
-  while read l
-  do
+  while read l; do
     echo -n "$l$sep"
   done | sed -E "s/.{$seplen}$//"
 }

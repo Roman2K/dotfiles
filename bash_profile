@@ -10,14 +10,10 @@ BIN=$CODE/bin
 
 [ $IS_OSX ] && {
   HOMEBREW=$OPT/homebrew
-  PYTHON=$HOME/Library/Python
+  OSX_PYTHON=$HOME/Library/Python
 }
 
-[ $IS_LINUX ] && {
-  source /usr/share/git/completion/git-prompt.sh
-}
-
-add_opt() {
+_add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
@@ -32,37 +28,41 @@ add_opt() {
   }
 }
 
-# Bash
-export HISTSIZE=100000
-export HISTFILESIZE=$HISTSIZE
-
-# ~/opt
-for d in "$OPT"/*; do
-  add_opt "$d"
-done
-
-# rbenv & co
-add_xenv() {
+_add_xenv() {
   local name=$1
   local root=$HOME/.$name
   [ -d "$root" ] || return
-  local compl="$root/completions/$name.bash"
-  add_opt "$root"
+  _add_opt "$root"
   export PATH="$root/shims:$PATH"
+  local compl="$root/completions/$name.bash"
   [ -f "$compl" ] && source "$compl"
 }
-add_xenv rbenv
-add_xenv ndenv
-add_xenv pyenv
 
-# Node.js
-export PATH="node_modules/.bin:$PATH"
+_build_cdpath() {
+  local p="."
+  for d in "$MAP" "$CODE"; do
+    [ -d "$d" ] && p="$p:$d"
+  done
+  echo "$p"
+}
 
-# Go
-export GOROOT=$(go env GOROOT)
+# opt/
+for d in "$OPT"/*; do
+  _add_opt "$d"
+done
+
+# rbenv & co
+_add_xenv rbenv
+_add_xenv ndenv
+_add_xenv pyenv
 
 # bin/
 export PATH="$BIN:$PATH"
+
+# Bash
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+export CDPATH=$(_build_cdpath)
 
 # Vim / Neovim
 #export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
@@ -70,6 +70,12 @@ export PATH="$BIN:$PATH"
 export EDITOR="vim"
 alias vim=$EDITOR
 alias vi=$EDITOR
+
+# Node.js
+export PATH="node_modules/.bin:$PATH"
+
+# Go
+export GOROOT=$(go env GOROOT)
 
 # Shortcuts
 alias r="exec bash -l"
@@ -85,25 +91,15 @@ alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour"
 
-# cd
-_build_cdpath() {
-  local p="."
-  for d in "$MAP" "$CODE"; do
-    [ -d "$d" ] && p="$p:$d"
-  done
-  echo "$p"
-}
-export CDPATH=$(_build_cdpath)
-
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 [ $IS_OSX ] && alias ls='ls -G'
 [ $IS_LINUX ] && alias ls='ls --color=auto'
 
 # $PS1
-PROMPT_COMMAND='ps1'
+PROMPT_COMMAND='_ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
-ps1() {
+_ps1() {
   local last=$?
   local RED="\[\033[31m\]"
   local GREEN="\[\033[32m\]"
@@ -119,17 +115,6 @@ ps1() {
   [ $IS_LINUX ] && PS1="\u@\h:$PS1"
 }
 
-# gist
-gist() {
-  local d="$OPT"/gist
-  ruby -I "$d"/lib "$d"/bin/gist "$@"
-}
-
-# JSON pretty-printing
-pretty_json() {
-  underscore print --color
-}
-
 [ $IS_OSX ] && {
   # Homebrew
   [ "$HOMEBREW" ] && {
@@ -138,10 +123,10 @@ pretty_json() {
 
   # Python
   # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
-  [ "$PYTHON" ] && [ -d "$PYTHON" ] && {
+  [ "$OSX_PYTHON" ] && [ -d "$OSX_PYTHON" ] && {
     while read dir; do
       export PATH="$dir:$PATH"
-    done < <(find "$PYTHON" -maxdepth 2 -name bin)
+    done < <(find "$OSX_PYTHON" -maxdepth 2 -name bin)
   }
 
   # Java
@@ -160,9 +145,14 @@ pretty_json() {
   export DOCKER_HOST="tcp://localhost:2375"
 }
 
-# Bash profile
-find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d |
-  while read f; do
+[ $IS_LINUX ] && {
+  # Git
+  source /usr/share/git/completion/git-prompt.sh
+}
+
+# Custom
+find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d \
+  | while read f; do
     source "$f" || break
   done
 

@@ -48,6 +48,11 @@ Bundle 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 set runtimepath+=$GOROOT/misc/vim
 
 ""
+" Ruby
+"
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+
+""
 " Themes
 "
 syntax on

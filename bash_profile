@@ -4,8 +4,6 @@ case "$(uname)" in
 esac
 
 OPT=$HOME/opt
-RBENV=$HOME/.rbenv
-NDENV=$HOME/.ndenv
 CODE=$HOME/code
 MAP=$HOME/map
 BIN=$CODE/bin
@@ -43,17 +41,19 @@ for d in "$OPT"/*; do
   add_opt "$d"
 done
 
-# rbenv
-[ -d "$RBENV" ] && {
-  add_opt "$RBENV"
-  export PATH="$RBENV/shims:$PATH"
+# rbenv & co
+add_xenv() {
+  local name=$1
+  local root=$HOME/.$name
+  [ -d "$root" ] || return
+  local compl="$root/completions/$name.bash"
+  add_opt "$root"
+  export PATH="$root/shims:$PATH"
+  [ -f "$compl" ] && source "$compl"
 }
-
-# ndenv
-[ -d "$NDENV" ] && {
-  add_opt "$NDENV"
-  export PATH="$NDENV/shims:$PATH"
-}
+add_xenv rbenv
+add_xenv ndenv
+add_xenv pyenv
 
 # Node.js
 export PATH="node_modules/.bin:$PATH"

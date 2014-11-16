@@ -1,4 +1,4 @@
-function join_str() {
+join_str() {
   sep=$1
   seplen=${#sep}
   while read l; do
@@ -6,7 +6,7 @@ function join_str() {
   done | sed -E "s/.{$seplen}$//"
 }
 
-function truncate_str() {
+truncate_str() {
   maxlen=$1
   str=$2
   [ -n "$maxlen" -a -n "$str" ] || return 1

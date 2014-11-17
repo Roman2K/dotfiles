@@ -10,7 +10,6 @@ BIN=$CODE/bin
 
 [ $IS_OSX ] && {
   HOMEBREW=$OPT/homebrew
-  OSX_PYTHON=$HOME/Library/Python
 }
 
 _add_opt() {
@@ -119,14 +118,6 @@ _ps1() {
   # Homebrew
   [ "$HOMEBREW" ] && {
     source "$HOMEBREW"/etc/bash_completion
-  }
-
-  # Python
-  # http://fvue.nl/wiki/Bash:_Piped_%60while-read'_loop_starts_subshell
-  [ "$OSX_PYTHON" ] && [ -d "$OSX_PYTHON" ] && {
-    while read dir; do
-      export PATH="$dir:$PATH"
-    done < <(find "$OSX_PYTHON" -maxdepth 2 -name bin)
   }
 
   # Java

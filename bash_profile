@@ -58,7 +58,7 @@ _add_xenv pyenv
 # pyenv Bash completion
 while read f; do
   source "$f"
-done < <(find $HOME/.pyenv/versions/$(pyenv global)/etc/bash_completion.d -depth 1)
+done < <(find $HOME/.pyenv/versions/$(pyenv global)/etc/bash_completion.d -depth 1 2>/dev/null)
 
 # bin/
 export PATH="$BIN:$PATH"

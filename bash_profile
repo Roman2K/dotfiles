@@ -55,6 +55,11 @@ _add_xenv rbenv
 _add_xenv ndenv
 _add_xenv pyenv
 
+# pyenv Bash completion
+while read f; do
+  source "$f"
+done < <(find $HOME/.pyenv/versions/$(pyenv global)/etc/bash_completion.d -depth 1)
+
 # bin/
 export PATH="$BIN:$PATH"
 

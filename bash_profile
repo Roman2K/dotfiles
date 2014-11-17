@@ -147,9 +147,8 @@ _ps1() {
 }
 
 # Custom
-find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d \
-  | while read f; do
-    source "$f" || break
-  done
+while read f; do
+  source "$f"
+done < <(find $HOME/.bash/enabled -name \*.sh -depth 1 -not -type d)
 
 true

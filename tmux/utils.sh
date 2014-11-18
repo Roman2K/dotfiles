@@ -10,8 +10,7 @@ truncate_str() {
   maxlen=$1
   str=$2
   [ -n "$maxlen" -a -n "$str" ] || return 1
-  if [ ${#str} -gt $maxlen ]
-  then
+  if [ ${#str} -gt $maxlen ]; then
     str=$(sed -E 's/^(.{'$maxlen'}).*/\1/' <<< "$str")
     str=$(sed -e 's/ *$//' <<< "$str")
   fi

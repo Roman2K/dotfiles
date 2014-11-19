@@ -8,9 +8,9 @@ CODE=$HOME/code
 MAP=$HOME/map
 BIN=$CODE/bin
 
-[ $IS_OSX ] && {
+if (( IS_OSX )); then
   HOMEBREW=$OPT/homebrew
-}
+fi
 
 _add_opt() {
   local d=$1
@@ -18,13 +18,12 @@ _add_opt() {
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
 
-  [ $IS_OSX ] && {
-    [ -d "$d/lib" ] && {
-      # http://stackoverflow.com/a/4250665
-      export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-      export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-    }
-  }
+  if (( IS_OSX )) && [ -d "$d/lib" ]; then
+    # http://stackoverflow.com/a/4250665
+    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+    # TODO headers/include path
+  fi
 }
 
 _add_xenv() {
@@ -99,8 +98,8 @@ alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
-[ $IS_OSX ] && alias ls='ls -G'
-[ $IS_LINUX ] && alias ls='ls --color=auto'
+(( IS_OSX )) && alias ls='ls -G'
+(( IS_LINUX )) && alias ls='ls --color=auto'
 
 # $PS1
 PROMPT_COMMAND='_ps1'
@@ -118,14 +117,14 @@ _ps1() {
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
   PS1="${wd}${git}${last_status_color} ❯${RESET} "
-  [ $IS_LINUX ] && PS1="\u@\h:$PS1"
+  (( IS_LINUX )) && PS1="\u@\h:$PS1"
 }
 
-[ $IS_OSX ] && {
+if (( IS_OSX )); then
   # Homebrew
-  [ "$HOMEBREW" ] && {
+  if [ "$HOMEBREW" ]; then
     source "$HOMEBREW"/etc/bash_completion
-  }
+  fi
 
   # Java
   export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
@@ -141,12 +140,12 @@ _ps1() {
 
   # Docker
   export DOCKER_HOST="tcp://localhost:2375"
-}
+fi
 
-[ $IS_LINUX ] && {
+if (( IS_LINUX )); then
   # Git
   source /usr/share/git/completion/git-prompt.sh
-}
+fi
 
 # Custom
 while read f; do

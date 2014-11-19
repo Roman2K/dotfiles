@@ -94,6 +94,7 @@ alias lg="git log --pretty=format:'%C(yellow)%h %C(white)%ci%Creset %s%C(blue)%d
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour"
+alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

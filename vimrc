@@ -27,11 +27,16 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-eunuch'
 Bundle 'mbbill/undotree'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'davidoc/taskpaper.vim'
+
+" orgmode
 Bundle 'jceb/vim-orgmode'
 Bundle 'tpope/vim-speeddating'
 
+" Themes
 Bundle 'w0ng/vim-hybrid'
 
+" Syntax highlighting
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elzr/vim-json'

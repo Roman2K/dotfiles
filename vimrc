@@ -27,6 +27,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-eunuch'
 Bundle 'mbbill/undotree'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'jceb/vim-orgmode'
+Bundle 'tpope/vim-speeddating'
 
 Bundle 'w0ng/vim-hybrid'
 

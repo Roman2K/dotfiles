@@ -88,20 +88,6 @@ nmap <C-l> :nohlsearch<CR>
 let g:vim_markdown_folding_disabled=1
 
 ""
-" Folding
-"
-set foldmethod=syntax
-set foldlevel=99  " default: unfolded
-autocmd BufWinLeave *
-  \   if expand('%') != '' && &buftype !~ 'nofile'
-  \|      mkview
-  \|  endif
-autocmd BufWinEnter *
-  \   if expand('%') != '' && &buftype !~ 'nofile'
-  \|      silent loadview
-  \|  endif
-
-""
 " Fix for OS X crontab -e
 " See http://calebthompson.io/crontab-and-vim-sitting-in-a-tree/
 "

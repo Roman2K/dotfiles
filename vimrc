@@ -29,7 +29,7 @@ Bundle 'mbbill/undotree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'davidoc/taskpaper.vim'
 
-" orgmode
+" Org mode
 Bundle 'jceb/vim-orgmode'
 Bundle 'tpope/vim-speeddating'
 

@@ -26,6 +26,8 @@ Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
 * [eunuch.vim](https://github.com/tpope/vim-eunuch)
 * [undotree](https://github.com/mbbill/undotree)
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
+* [taskpaper.vim](https://github.com/davidoc/taskpaper.vim)
+* [vim-orgmode](https://github.com/jceb/vim-orgmode)
 
 Notable shortcuts:
 

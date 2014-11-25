@@ -22,18 +22,16 @@ module Dotfiles
     basedir = Pathname(basedir)
     home    = Pathname(Dir.home)
 
-    [].tap do |installers|
-      IO.foreach(File.join(basedir, LIST_FILENAME)).map do |line|
-        type, *args = line.strip.split(" ")
-        installer = case type
-          when 'S' then Symlinks::SourceLink
-          when 'L' then Symlinks::Regular
-          else raise "unknown type: %s" % type
-        end.new(basedir, home, *args)
-        installers << installer
-      end
+    IO.foreach(File.join(basedir, LIST_FILENAME)).map { |line|
+      type, *args = line.strip.split(" ")
+      case type
+        when 'S' then Symlinks::SourceLink
+        when 'L' then Symlinks::Regular
+        else raise "unknown type: %s" % type
+      end.new(basedir, home, *args)
+    }.tap { |installers|
       installers << Vim.new(home)
-    end
+    }
   end
 
   module Symlinks

@@ -37,10 +37,11 @@ _add_xenv() {
 }
 
 _build_cdpath() {
-  local p=".:$HOME"
+  local p="."
   for d in "$CODE" "$MAP"; do
     [ -d "$d" ] && p="$p:$d"
   done
+  p="$p:$HOME"
   echo "$p"
 }
 

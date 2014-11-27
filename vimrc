@@ -118,7 +118,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 2
 let g:syntastic_ruby_mri_quiet_messages = { "regex": [
   \ '\m^shadowing outer local variable ',
-  \ '\m`&'' interpreted as argument prefix'
+  \ '\m`&'' interpreted as argument prefix',
+  \ '\m`*'' interpreted as argument prefix'
   \ ] }
 
 ""

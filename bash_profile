@@ -94,7 +94,7 @@ alias prebase="git pull --rebase"
 alias lg="git log --pretty=format:'%C(yellow)%h %C(white)%ci%Creset %s%C(blue)%d %C(yellow)%an%Creset' --abbrev-commit"
 alias b="bundle exec"
 alias c="b rails c"
-alias sp="b rspec --format progress --colour"
+alias sp="b rspec --format progress --colour --no-profile"
 alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
 
 # Colors
@@ -118,6 +118,7 @@ _ps1() {
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
   PS1="${wd}${git}${last_status_color} ❯${RESET} "
+  [ $last -ne 0 ] && PS1="${last_status_color}${last}${RESET} $PS1"
   (( IS_LINUX )) && PS1="\u@\h:$PS1"
 }
 

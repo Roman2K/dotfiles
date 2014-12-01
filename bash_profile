@@ -5,7 +5,6 @@ esac
 
 OPT=$HOME/opt
 CODE=$HOME/code
-MAP=$HOME/map
 BIN=$CODE/bin
 
 if (( IS_OSX )); then
@@ -36,15 +35,6 @@ _add_xenv() {
   [ -f "$compl" ] && source "$compl"
 }
 
-_build_cdpath() {
-  local p="."
-  for d in "$CODE" "$MAP"; do
-    [ -d "$d" ] && p="$p:$d"
-  done
-  p="$p:$HOME"
-  echo "$p"
-}
-
 # opt/
 for d in "$OPT"/*; do
   _add_opt "$d"
@@ -66,7 +56,7 @@ export PATH="$BIN:$PATH"
 # Bash
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
-export CDPATH=$(_build_cdpath)
+export CDPATH=".:$CODE:$HOME"
 
 # Vim / Neovim
 #export VIMRUNTIME="$HOMEBREW/share/vim/vim74"

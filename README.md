@@ -6,10 +6,6 @@
 
     $ tools/uninstall
 
-## tmux
-
-Configure the range of ports to be displayed in `~/.tmux/conf/my-ports`.
-
 ## Vim
 
 ### Bundles

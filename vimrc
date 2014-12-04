@@ -33,6 +33,10 @@ Bundle 'davidoc/taskpaper.vim'
 Bundle 'jceb/vim-orgmode'
 Bundle 'tpope/vim-speeddating'
 
+" Gist
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+
 " Themes
 Bundle 'w0ng/vim-hybrid'
 

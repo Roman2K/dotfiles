@@ -19,3 +19,5 @@
   new = green reverse
 [merge]
   tool = vimdiff
+[github]
+  user = Roman2K

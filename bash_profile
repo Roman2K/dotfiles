@@ -59,9 +59,9 @@ export HISTFILESIZE=$HISTSIZE
 export CDPATH=".:$CODE:$HOME"
 
 # Vim / Neovim
-#export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
-#export EDITOR="nvim"
-export EDITOR="vim"
+export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
+export EDITOR="nvim"
+#export EDITOR="vim"
 alias vim=$EDITOR
 alias vi=$EDITOR
 

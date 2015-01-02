@@ -10,5 +10,6 @@ S tmux
 L .tmux/tmux.conf .tmux.conf
 S vimrc
 L .vimrc .nvimrc
+L .vim .nvim
 S gemrc
 S ssh_config .ssh/config

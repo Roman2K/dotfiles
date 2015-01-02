@@ -26,7 +26,7 @@ module Dotfiles
       type, *args = line.strip.split(" ")
       case type
         when 'S' then Symlinks::SourceLink
-        when 'L' then Symlinks::Regular
+        when 'L' then Symlinks::HomeBased
         else raise "unknown type: %s" % type
       end.new(basedir, home, *args)
     }.tap { |installers|
@@ -35,7 +35,7 @@ module Dotfiles
   end
 
   module Symlinks
-    class Basic
+    class Regular
       def initialize(from, to)
         @from = Pathname(from)
         @to = Pathname(to)
@@ -71,7 +71,7 @@ module Dotfiles
       end
     end
 
-    class Regular < Basic
+    class HomeBased < Regular
       def initialize(basedir, home, from, to)
         @name = to.to_s
         super(from, home.join(to))
@@ -80,7 +80,7 @@ module Dotfiles
       attr_reader :name
     end
 
-    class SourceLink < Basic
+    class SourceLink < Regular
       def initialize(basedir, home, from, to=".#{from}")
         @name = to.to_s
         super \
@@ -113,7 +113,12 @@ module Dotfiles
       dirs.each do |dir|
         FILEUTILS.mkdir_p(dir)
       end
-      FILEUTILS.ln_s("../vim-plug/plug.vim", @maindir.join("autoload"))
+      vim_plug_syml = Symlinks::Regular.new \
+        "../vim-plug/plug.vim",
+        @maindir.join("autoload/plug.vim")
+      vim_plug_syml.install.tap do |res|
+        res == :ok or return :vim_plug_syml_error
+      end
       clone_vim_plug or return :vim_plug_clone_error
       install_plugins or return :plugins_install_error
       :ok

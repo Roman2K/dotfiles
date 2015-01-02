@@ -99,7 +99,7 @@ module Dotfiles
 
   class Vim
     DIR = ".vim"
-    VUNDLE_REPO = "https://github.com/gmarik/vundle"
+    VIM_PLUG_REPO = "https://github.com/junegunn/vim-plug"
 
     def initialize(home)
       @maindir = home.join(DIR)
@@ -113,8 +113,9 @@ module Dotfiles
       dirs.each do |dir|
         FILEUTILS.mkdir_p(dir)
       end
-      clone_vundle or return :vundle_clone_error
-      install_bundles or return :vundle_bundle_install_error
+      FILEUTILS.ln_s("../vim-plug/plug.vim", @maindir.join("autoload"))
+      clone_vim_plug or return :vim_plug_clone_error
+      install_plugins or return :plugins_install_error
       :ok
     end
 
@@ -122,6 +123,8 @@ module Dotfiles
       dirs.each do |dir|
         FILEUTILS.rm_rf(dir)
       end
+      FILEUTILS.rm_rf(@maindir.join("vim-plug"))
+      FILEUTILS.rm_rf(@maindir.join("plugged"))
       if @maindir.directory? && @maindir.entries.size == 2 # ., ..
         FILEUTILS.rm_r(@maindir)
       end
@@ -131,17 +134,17 @@ module Dotfiles
   private
 
     def dirs
-      %w(bundle swap).map { |name| @maindir.join(name) }
+      %w(autoload swap).map { |name| @maindir.join(name) }
     end
 
-    def clone_vundle
-      dest = @maindir.join("bundle/vundle")
+    def clone_vim_plug
+      dest = @maindir.join("vim-plug")
       !dest.directory? or return true
-      system "git", "clone", VUNDLE_REPO, dest.to_s
+      system "git", "clone", VIM_PLUG_REPO, dest.to_s
     end
 
-    def install_bundles
-      system "vim", "+BundleInstall", "+BundleClean", "+qa"
+    def install_plugins
+      system "vim", "+PlugInstall", "+qa"
     end
   end
 end

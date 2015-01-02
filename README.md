@@ -8,7 +8,7 @@
 
 ## Vim
 
-### Bundles
+### Plugins
 
 * [EditorConfig](https://github.com/editorconfig/editorconfig-vim)
 * [ctrlp.vim](https://github.com/kien/ctrlp.vim)
@@ -24,10 +24,11 @@
 * [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 * [taskpaper.vim](https://github.com/davidoc/taskpaper.vim)
 * [vim-orgmode](https://github.com/jceb/vim-orgmode)
+* [Gist.vim](https://github.com/mattn/gist-vim)
 
 Notable shortcuts:
 
-Bundle       | Trigger         | Description
+Plugin       | Trigger         | Description
 ------------ | -------------   | -----------
 ctrlp.vim    | Ctrl + P        | Fuzzy file finder
 ctrlp.vim    | Ctrl + X        | Open match in horizontal split
@@ -44,7 +45,7 @@ EasyMotion   | ,,w             | Visual motion selection
 
 Other features:
 
-* Go syntax highlighting
+* Go syntax highlighting (based on $GOROOT)
 * vim-airline statusline (always visible)
 * Configure per-filetype identation style in `.editorconfig`, see the EditorConfig [example file](http://editorconfig.org/#example-file)
 * Swap files are kept in `~/.vim/swap` (see option [`directory`](http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27)) instead of littering the file's parent directory

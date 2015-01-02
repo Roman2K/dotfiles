@@ -1,57 +1,47 @@
 set nocompatible " Vim
 
-""
-" Vundle
-" https://github.com/gmarik/vundle
-"
 let root='~/.vim'
-let bundle_dir=root.'/bundle'
-let src='http://github.com/gmarik/vundle.git'
+
 filetype off
-exec 'set runtimepath+='.bundle_dir.'/vundle'
-call vundle#rc(bundle_dir)
-Bundle 'gmarik/vundle'
 
 ""
-" Bundles
+" Vim-Plug plugins
 "
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-commentary'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-eunuch'
-Bundle 'mbbill/undotree'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'davidoc/taskpaper.vim'
-
+call plug#begin(root.'/plugged')
+Plug 'editorconfig/editorconfig-vim'
+Plug 'kien/ctrlp.vim'
+Plug 'ervandew/supertab'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-eunuch'
+Plug 'mbbill/undotree'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'davidoc/taskpaper.vim'
 " Org mode
-Bundle 'jceb/vim-orgmode'
-Bundle 'tpope/vim-speeddating'
-
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
 " Gist
-Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
 " Themes
-Bundle 'w0ng/vim-hybrid'
-
+Plug 'w0ng/vim-hybrid'
 " Syntax highlighting
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'elzr/vim-json'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'evanmiller/nginx-vim-syntax'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'wavded/vim-stylus'
-Bundle 'dag/vim-fish'
-Bundle 'zaiste/tmux.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'docker/docker', {'rtp': 'contrib/syntax/vim'}
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'digitaltoad/vim-jade'
+Plug 'wavded/vim-stylus'
+Plug 'dag/vim-fish'
+Plug 'zaiste/tmux.vim'
+Plug 'groenewege/vim-less'
+Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
+call plug#end()
 
 ""
 " Go

@@ -132,7 +132,7 @@ if (( IS_OSX )); then
   [ -d "$d" ] && export PATH="$d:$PATH"
 
   # Docker
-  export DOCKER_HOST="tcp://localhost:2375"
+  export DOCKER_HOST="tcp://192.168.56.101:2376"
 fi
 
 if (( IS_LINUX )); then

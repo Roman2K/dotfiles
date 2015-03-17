@@ -1,3 +1,8 @@
+Host crissic
+  Hostname crissic.romanlenegrate.net
+  #Hostname 162.220.13.98
+  User roman
+
 Host map.prod
   Hostname 10.20.40.61
   User ecommerce
@@ -15,18 +20,3 @@ Host map.preprod
 Host map.print map.print.preprod
   Hostname map-print-preprod.bearstech.com
   User print
-
-Host crissic
-  Hostname crissic.romanlenegrate.net
-  #Hostname 162.220.13.98
-  User roman
-
-Host vlr
-  Hostname vlr.romanlenegrate.net
-  #Hostname 89.87.82.207
-  User roman
-
-Host front.map.gcloud
-  Hostname 146.148.14.32
-  User root
-  ForwardAgent yes

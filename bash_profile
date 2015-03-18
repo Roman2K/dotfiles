@@ -68,9 +68,6 @@ alias vi=$EDITOR
 # Node.js
 export PATH="node_modules/.bin:$PATH"
 
-# Go
-export GOROOT=$(go env GOROOT)
-
 # Shortcuts
 alias r="exec bash -l"
 alias m="tmux"

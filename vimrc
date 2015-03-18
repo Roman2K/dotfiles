@@ -44,11 +44,6 @@ Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 call plug#end()
 
 ""
-" Go
-"
-set runtimepath+=$GOROOT/misc/vim
-
-""
 " Ruby
 "
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby

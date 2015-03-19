@@ -72,7 +72,6 @@ export PATH="node_modules/.bin:$PATH"
 alias r="exec bash -l"
 alias m="tmux"
 alias ll="ls -lph"
-alias st="git status"
 alias di="git diff"
 alias dis="git diff --staged"
 alias a="git add"
@@ -84,6 +83,14 @@ alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
 alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
+
+st() {
+  if [ -f mongroup.conf ]; then
+    mongroup status "$@"
+  else
+    git status "$@"
+  fi
+}
 
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'

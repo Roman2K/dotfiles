@@ -57,6 +57,7 @@ silent! colorscheme hybrid
 ""
 " Config
 "
+set encoding=utf-8  " see http://unix.stackexchange.com/a/23414
 exec 'set directory='.root.'/swap,.'
 runtime macros/matchit.vim
 set modeline

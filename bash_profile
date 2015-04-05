@@ -56,7 +56,7 @@ export PATH="$BIN:$PATH"
 # Bash
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
-export CDPATH=".:$CODE:$HOME"
+export CDPATH=".:$CODE/go/src:$CODE:$HOME"
 
 # Vim / Neovim
 export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
@@ -67,6 +67,13 @@ alias vi=$EDITOR
 
 # Node.js
 export PATH="node_modules/.bin:$PATH"
+
+# Go
+export GOPATH="$HOME/.go:_vendor:$CODE/go"
+IFS=':' read -ra dirs <<< "$GOPATH"
+for d in "${dirs[@]}"; do
+  export PATH="$d/bin:$PATH"
+done
 
 # Shortcuts
 alias r="exec bash -l"
@@ -106,13 +113,11 @@ _ps1() {
   local GREEN="\[\033[32m\]"
   local YELLOW="\[\033[93m\]"
   local RESET="\[\033[0m\]"
-  local cwd=$(pwd)
-  local wd=${cwd#$HOME}
-  [ "$wd" = "$cwd" ] || wd="~$wd"
+  local cwd=$(promptpath "$(pwd)" || pwd)
   local last_status_color
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
-  PS1="${wd}${git}${last_status_color} ❯${RESET} "
+  PS1="${cwd}${git}${last_status_color} ❯${RESET} "
   [ $last -ne 0 ] && PS1="${last_status_color}${last}${RESET} $PS1"
   (( IS_LINUX )) && PS1="\u@\h:$PS1"
 }
@@ -137,7 +142,9 @@ if (( IS_OSX )); then
   [ -d "$d" ] && export PATH="$d:$PATH"
 
   # Docker
-  export DOCKER_HOST="tcp://192.168.56.101:2376"
+  export DOCKER_HOST="tcp://192.168.59.103:2376"
+  export DOCKER_CERT_PATH="$HOME/.boot2docker/certs/boot2docker-vm"
+  export DOCKER_TLS_VERIFY=1
 fi
 
 if (( IS_LINUX )); then

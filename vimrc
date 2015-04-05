@@ -41,6 +41,7 @@ Plug 'dag/vim-fish'
 Plug 'zaiste/tmux.vim'
 Plug 'groenewege/vim-less'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
+Plug 'fatih/vim-go'
 call plug#end()
 
 ""
@@ -111,6 +112,12 @@ let g:syntastic_ruby_mri_quiet_messages = { "regex": [
   \ '\m`&'' interpreted as argument prefix',
   \ '\m`*'' interpreted as argument prefix'
   \ ] }
+
+""
+" vim-go
+"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
 
 ""
 " wildmenu

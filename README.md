@@ -6,6 +6,16 @@
 
     $ tools/uninstall
 
+## Additional config
+
+To do by hand:
+
+```bash
+$ bundle config --global jobs 8
+```
+
+See [`--jobs`](http://bundler.io/v1.5/bundle_install.html#jobs).
+
 ## Vim
 
 ### Plugins

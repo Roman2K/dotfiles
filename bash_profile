@@ -99,6 +99,9 @@ st() {
   fi
 }
 
+# Make it easier to cd: cd $go
+go="$CODE/go/src"
+
 # Colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 (( IS_OSX )) && alias ls='ls -G'
@@ -126,6 +129,8 @@ if (( IS_OSX )); then
   # Homebrew
   if [ "$HOMEBREW" ]; then
     source "$HOMEBREW"/etc/bash_completion
+    export CPATH="$HOMEBREW/include:$CPATH"
+    export LIBRARY_PATH="$HOMEBREW/lib:$LIBRARY_PATH"
   fi
 
   # Java

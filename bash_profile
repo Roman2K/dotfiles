@@ -85,6 +85,8 @@ done
 alias r="exec bash -l"
 alias m="tmux"
 alias ll="ls -lph"
+alias st="git status"
+alias mst="mg status"
 alias di="git diff"
 alias dis="git diff --staged"
 alias a="git add"
@@ -96,14 +98,6 @@ alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
 alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
-
-st() {
-  if [ -f mongroup.conf ]; then
-    mongroup status "$@"
-  else
-    git status "$@"
-  fi
-}
 
 # Make it easier to cd: cd $go
 go="$CODE/go/src"

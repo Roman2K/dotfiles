@@ -120,7 +120,9 @@ _ps1() {
   local last_status_color
   [ $last -eq 0 ] && last_status_color=$GREEN || last_status_color=$RED
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
-  PS1="${cwd}${git}${last_status_color} ❯${RESET} "
+  local sep=">"
+  (( IS_OSX )) && sep="❯"
+  PS1="${cwd}${git}${last_status_color} ${sep}${RESET} "
   [ $last -ne 0 ] && PS1="${last_status_color}${last}${RESET} $PS1"
 }
 

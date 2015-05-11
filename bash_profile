@@ -158,6 +158,12 @@ fi
 if (( IS_LINUX )); then
   # Git
   source /usr/share/bash-completion/completions/git
+
+  # Postgres
+  d="/usr/lib/postgresql/9.3/bin"
+  if [ -d "$d" ]; then
+    export PATH="$d:$PATH"
+  fi
 fi
 
 # Custom

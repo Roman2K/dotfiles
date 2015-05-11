@@ -13,6 +13,11 @@ Host map.staging
   #Hostname staging.map.af83.com
   User maphoto
 
+# cd ../worker/map-worker
+Host map.mapstaging
+  Hostname staging.monalbumphoto.fr
+  User ecommerce
+
 Host map.preprod
   Hostname map-preprod1.bearstech.com
   User ecommerce

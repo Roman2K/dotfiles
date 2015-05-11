@@ -9,6 +9,8 @@ BIN=$CODE/bin
 
 if (( IS_OSX )); then
   HOMEBREW=$OPT/homebrew
+elif (( IS_LINUX )); then
+  HOMEBREW=$OPT/linuxbrew
 fi
 
 _add_opt() {
@@ -16,13 +18,9 @@ _add_opt() {
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
-
-  if (( IS_OSX )) && [ -d "$d/lib" ]; then
-    # http://stackoverflow.com/a/4250665
-    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-    # TODO headers/include path
-  fi
+  [ -d "$d/include" ] && export CPATH="$d/include:$CPATH"
+  [ -d "$d/lib" ] && export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+  [ -d "$d/lib/pkgconfig" ] && export PKG_CONFIG_PATH="$d/lib/pkgconfig:$PKG_CONFIG_PATH"
 }
 
 _add_xenv() {
@@ -39,6 +37,7 @@ _add_xenv() {
 for d in "$OPT"/*; do
   _add_opt "$d"
 done
+export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
 # rbenv & co
 _add_xenv rbenv
@@ -46,9 +45,12 @@ _add_xenv ndenv
 _add_xenv pyenv
 
 # pyenv Bash completion
-while read f; do
-  source "$f"
-done < <(find $HOME/.pyenv/versions/$(pyenv global)/etc/bash_completion.d -depth 1 2>/dev/null)
+v=$(pyenv global 2>/dev/null)
+if [[ "$v" ]] && [ "$v" != "system" ]; then
+  while read f; do
+    source "$f"
+  done < <(find $HOME/.pyenv/versions/$v/etc/bash_completion.d -mindepth 1 -maxdepth 1)
+fi
 
 # bin/
 export PATH="$BIN:$PATH"
@@ -59,7 +61,10 @@ export HISTFILESIZE=$HISTSIZE
 export CDPATH=".:$CODE/go/src:$CODE:$HOME"
 
 # Vim / Neovim
-export VIMRUNTIME="$HOMEBREW/share/vim/vim74"
+if [ "$HOMEBREW" ]; then
+  d="$HOMEBREW/share/vim/vim74"
+  [ -d "$d" ] && export VIMRUNTIME="$d"
+fi
 export EDITOR="nvim"
 #export EDITOR="vim"
 alias vim=$EDITOR
@@ -70,6 +75,7 @@ export PATH="node_modules/.bin:$PATH"
 
 # Go
 export GOPATH="$HOME/.go:_vendor:$CODE/go"
+(( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do
   export PATH="$d/bin:$PATH"
@@ -122,17 +128,14 @@ _ps1() {
   local git=$(__git_ps1 " ${YELLOW}%s${RESET}")
   PS1="${cwd}${git}${last_status_color} ❯${RESET} "
   [ $last -ne 0 ] && PS1="${last_status_color}${last}${RESET} $PS1"
-  (( IS_LINUX )) && PS1="\u@\h:$PS1"
 }
 
-if (( IS_OSX )); then
-  # Homebrew
-  if [ "$HOMEBREW" ]; then
-    source "$HOMEBREW"/etc/bash_completion
-    export CPATH="$HOMEBREW/include:$CPATH"
-    export LIBRARY_PATH="$HOMEBREW/lib:$LIBRARY_PATH"
-  fi
+if [ "$HOMEBREW" ]; then
+  f="$HOMEBREW"/etc/bash_completion
+  [ -f "$f" ] && source "$f"
+fi
 
+if (( IS_OSX )); then
   # Java
   export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 
@@ -154,12 +157,12 @@ fi
 
 if (( IS_LINUX )); then
   # Git
-  source /usr/share/git/completion/git-prompt.sh
+  source /usr/share/bash-completion/completions/git
 fi
 
 # Custom
 while read f; do
   source "$f"
-done < <(find $HOME/.bash/enabled -name \*.sh -depth 1 -not -type d)
+done < <(find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d -name \*.sh)
 
 true

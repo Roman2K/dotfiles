@@ -25,3 +25,8 @@ Host map.preprod
 Host map.print map.print.preprod
   Hostname map-print-preprod.bearstech.com
   User print
+
+Host cullera
+  Hostname 0.tcp.ngrok.io
+  Port 44738
+  User roman

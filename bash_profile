@@ -97,7 +97,16 @@ alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
-alias t="(mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world"
+
+t() {
+  if (( IS_OSX )); then
+    (mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world
+  else
+    (test -d $HOME/tmp || (mkdir $HOME/tmp && touch $HOME/tmp/hello_world)) \
+      && cd $HOME/tmp \
+      && ll hello_world
+  fi
+}
 
 # Make it easier to cd: cd $go
 go="$CODE/go/src"

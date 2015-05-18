@@ -13,16 +13,20 @@ elif (( IS_LINUX )); then
   HOMEBREW=$OPT/linuxbrew
 fi
 
+# TODO opt_dirs:
+#
+#   [ -d "$d/include" ] && export CPATH="$d/include:$CPATH"
+#   [ -d "$d/lib" ] && {
+#     export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+#     export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+#   }
+#
+
 _add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
-  [ -d "$d/include" ] && export CPATH="$d/include:$CPATH"
-  [ -d "$d/lib" ] && {
-    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-  }
   [ -d "$d/lib/pkgconfig" ] && export PKG_CONFIG_PATH="$d/lib/pkgconfig:$PKG_CONFIG_PATH"
 }
 

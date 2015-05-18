@@ -19,7 +19,10 @@ _add_opt() {
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
   [ -d "$d/include" ] && export CPATH="$d/include:$CPATH"
-  [ -d "$d/lib" ] && export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+  [ -d "$d/lib" ] && {
+    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
+  }
   [ -d "$d/lib/pkgconfig" ] && export PKG_CONFIG_PATH="$d/lib/pkgconfig:$PKG_CONFIG_PATH"
 }
 
@@ -47,9 +50,12 @@ _add_xenv pyenv
 # pyenv Bash completion
 v=$(pyenv global 2>/dev/null)
 if [[ "$v" ]] && [ "$v" != "system" ]; then
-  while read f; do
-    source "$f"
-  done < <(find $HOME/.pyenv/versions/$v/etc/bash_completion.d -mindepth 1 -maxdepth 1)
+  d="$HOME/.pyenv/versions/$v/etc/bash_completion.d"
+  if [ -d "$d" ]; then
+    while read f; do
+      source "$f"
+    done < <(find "$d" -mindepth 1 -maxdepth 1)
+  fi
 fi
 
 # bin/
@@ -97,6 +103,7 @@ alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
+alias nethogs="sudo bash -cli ~/opt/nethogs/bin/nethogs"
 
 t() {
   if (( IS_OSX )); then

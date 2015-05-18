@@ -26,6 +26,11 @@ Host map.print map.print.preprod
   Hostname map-print-preprod.bearstech.com
   User print
 
+Host dev
+  Hostname dev.romanlenegrate.net
+  # Hostname 176.56.238.216
+  User roman
+
 Host cullera
   Hostname 0.tcp.ngrok.io
   Port 44738

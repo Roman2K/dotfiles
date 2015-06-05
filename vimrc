@@ -76,6 +76,7 @@ if exists('+colorcolumn')
 endif
 let mapleader=','
 nmap <C-l> :nohlsearch<CR>
+execute("vmap <Leader>w !ruby ~/code/leadinwrap/leadinwrap.rb " . &textwidth . " <CR>")
 let g:vim_markdown_folding_disabled=1
 
 ""

@@ -3,6 +3,16 @@ Host crissic
   #Hostname 162.220.13.98
   User roman
 
+Host dev
+  Hostname dev.romanlenegrate.net
+  # Hostname 176.56.238.216
+  User roman
+
+Host cullera
+  Hostname 0.tcp.ngrok.io
+  Port 44738
+  User roman
+
 Host map.prod
   Hostname 10.20.40.61
   User ecommerce
@@ -13,8 +23,8 @@ Host map.staging
   #Hostname staging.map.af83.com
   User maphoto
 
-# cd ../worker/map-worker
 Host map.mapstaging
+  # cd ../worker/map-worker
   Hostname staging.monalbumphoto.fr
   User ecommerce
 
@@ -25,13 +35,3 @@ Host map.preprod
 Host map.print map.print.preprod
   Hostname map-print-preprod.bearstech.com
   User print
-
-Host dev
-  Hostname dev.romanlenegrate.net
-  # Hostname 176.56.238.216
-  User roman
-
-Host cullera
-  Hostname 0.tcp.ngrok.io
-  Port 44738
-  User roman

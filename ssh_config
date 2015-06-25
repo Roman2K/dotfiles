@@ -8,11 +8,6 @@ Host dev
   # Hostname 176.56.238.216
   User roman
 
-Host cullera
-  Hostname 0.tcp.ngrok.io
-  Port 44738
-  User roman
-
 Host map.prod
   Hostname 10.20.40.61
   User ecommerce

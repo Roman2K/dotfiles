@@ -109,11 +109,15 @@ alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
 
 git-annex() {
+  git-annex-docker git-annex "$@"
+}
+
+git-annex-docker() {
   docker run \
     -v /mnt/Volumes:/mnt/Volumes \
     -v /mnt/roman:/mnt/roman \
     -v /mnt/git-annex-data:/mnt/data \
-    git-annex "$@"
+    "$@"
 }
 
 t() {
@@ -207,5 +211,10 @@ fi
 while read f; do
   source "$f"
 done < <(find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d -name \*.sh)
+
+if [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
+  $HOMEBREW/bin/tmux
+  return
+fi
 
 true

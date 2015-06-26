@@ -107,7 +107,14 @@ alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
-alias nethogs="sudo bash -cli ~/opt/nethogs/bin/nethogs"
+
+git-annex() {
+  docker run \
+    -v /mnt/Volumes:/mnt/Volumes \
+    -v /mnt/roman:/mnt/roman \
+    -v /mnt/git-annex-data:/mnt/data \
+    git-annex "$@"
+}
 
 t() {
   if (( IS_OSX )); then
@@ -167,10 +174,22 @@ if (( IS_OSX )); then
   d="/Applications/VirtualBox.app/Contents/MacOS"
   [ -d "$d" ] && export PATH="$d:$PATH"
 
-  # Docker
-  export DOCKER_HOST="tcp://192.168.59.103:2376"
-  export DOCKER_CERT_PATH="$HOME/.boot2docker/certs/boot2docker-vm"
-  export DOCKER_TLS_VERIFY=1
+  # docker-machine env
+  export DOCKER_TLS_VERIFY="1"
+  export DOCKER_HOST="tcp://192.168.99.102:2376"
+  export DOCKER_CERT_PATH="/Users/roman/.docker/machine/machines/docker-dev"
+  export DOCKER_MACHINE_NAME="docker-dev"
+
+  if find /usr/local -mindepth 1 | grep -q .; then
+    {
+      echo "ATTENTION: /usr/local raped!"
+      echo
+      (cd /usr/local && find . -mindepth 1) | while read line; do
+        echo "  >> $line"
+      done
+      echo
+    } >&2
+  fi
 fi
 
 if (( IS_LINUX )); then

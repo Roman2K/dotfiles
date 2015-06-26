@@ -1,6 +1,6 @@
 # dotfiles
 
-![Screenshot](https://gist.github.com/Roman2K/3a436922376a62ac1435/raw/f3359163ef2d960a8ca6fd740efe3806ae1e03c4/screenshot.png)
+![Screenshot](http://i.imgur.com/eBPxuHA.png)
 
 ## Install
 

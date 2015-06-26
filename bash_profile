@@ -192,11 +192,11 @@ if (( IS_OSX )); then
   export DOCKER_CERT_PATH="/Users/roman/.docker/machine/machines/docker-dev"
   export DOCKER_MACHINE_NAME="docker-dev"
 
-  if find /usr/local -mindepth 1 | grep -q .; then
+  if [ -e /usr/local ]; then
     {
       echo "ATTENTION: /usr/local raped!"
       echo
-      (cd /usr/local && find . -mindepth 1) | while read line; do
+      find /usr/local | while read line; do
         echo "  >> $line"
       done
       echo

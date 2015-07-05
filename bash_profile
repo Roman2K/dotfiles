@@ -28,6 +28,10 @@ _add_opt() {
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
   [ -d "$d/share/man" ] && export MANPATH="$d/share/man:$MANPATH"
   [ -d "$d/lib/pkgconfig" ] && export PKG_CONFIG_PATH="$d/lib/pkgconfig:$PKG_CONFIG_PATH"
+  [ -d "$d/include" -a -d "$d/lib" ] && {
+    export CPATH="$d/include:$CPATH"
+    export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
+  }
 }
 
 _add_xenv() {
@@ -39,6 +43,10 @@ _add_xenv() {
   local compl="$root/completions/$name.bash"
   [ -f "$compl" ] && source "$compl"
 }
+
+# Locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # opt/
 for d in "$OPT"/*; do

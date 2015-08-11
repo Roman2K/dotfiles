@@ -49,6 +49,7 @@ module Dotfiles
             return :destination_exists
           end
         end
+        FILEUTILS.mkdir_p(@to.dirname)
         FILEUTILS.ln_s(@from, @to)
         :ok
       end

@@ -13,3 +13,5 @@ L .vimrc .nvimrc
 L .vim .nvim
 S gemrc
 S ssh_config .ssh/config
+S mpv/input.conf .config/mpv/input.conf
+S mpv/mpv.conf .config/mpv/mpv.conf

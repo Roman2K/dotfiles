@@ -6,16 +6,6 @@ Host mb
   Hostname 192.168.2.4
   User roman
 
-Host crissic
-  Hostname crissic.romanlenegrate.net
-  #Hostname 162.220.13.98
-  User roman
-
-Host dev
-  Hostname dev.romanlenegrate.net
-  # Hostname 176.56.238.216
-  User roman
-
 Host map.prod
   Hostname 10.20.40.62
   User ecommerce

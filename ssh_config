@@ -1,3 +1,7 @@
+Host mb
+  Hostname 192.168.2.4
+  User roman
+
 Host crissic
   Hostname crissic.romanlenegrate.net
   #Hostname 162.220.13.98
@@ -9,7 +13,7 @@ Host dev
   User roman
 
 Host map.prod
-  Hostname 10.20.40.61
+  Hostname 10.20.40.62
   User ecommerce
   ProxyCommand ssh map.preprod nc -q 60 %h %p
 

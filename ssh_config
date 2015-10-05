@@ -1,3 +1,7 @@
+Host imac
+  Hostname 192.168.2.1
+  User roman
+
 Host mb
   Hostname 192.168.2.4
   User roman

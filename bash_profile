@@ -174,12 +174,6 @@ if (( IS_OSX )); then
   # Java
   export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 
-  # OS X copy-paste and open
-  # http://superuser.com/questions/231130/unable-to-use-pbcopy-while-in-tmux-session
-  for n in pbcopy pbpaste open; do
-    alias $n="reattach-to-user-namespace $n"
-  done
-
   # VirtualBox
   d="/Applications/VirtualBox.app/Contents/MacOS"
   [ -d "$d" ] && export PATH="$d:$PATH"

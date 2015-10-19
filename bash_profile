@@ -184,7 +184,7 @@ if (( IS_OSX )); then
   export DOCKER_CERT_PATH="/Users/roman/.docker/machine/machines/docker-dev"
   export DOCKER_MACHINE_NAME="docker-dev"
 
-  if [ -e /usr/local ]; then
+  if [ $(find /usr/local | head -2 | wc -l) -ne 1 ]; then
     {
       echo "ATTENTION: /usr/local raped!"
       echo

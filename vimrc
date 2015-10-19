@@ -53,6 +53,7 @@ autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 " Themes
 "
 syntax on
+set background=dark
 silent! colorscheme hybrid
 
 ""

@@ -3,7 +3,7 @@ Host imac
   User roman
 
 Host mb
-  Hostname 192.168.2.4
+  Hostname 192.168.2.2
   User roman
 
 Host map.prod

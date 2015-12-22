@@ -115,6 +115,10 @@ set statusline+=%*
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 2
+let g:syntastic_mode_map = {
+  \ "mode": "active",
+  \ "active_filetypes": [],
+  \ "passive_filetypes": ["go"] }
 let g:syntastic_ruby_mri_quiet_messages = { "regex": [
   \ '\m^shadowing outer local variable ',
   \ '\m`&'' interpreted as argument prefix',

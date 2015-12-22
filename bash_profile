@@ -58,6 +58,7 @@ export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 _add_xenv rbenv
 _add_xenv ndenv
 _add_xenv pyenv
+_add_xenv goenv
 
 # pyenv Bash completion
 v=$(pyenv global 2>/dev/null)
@@ -92,12 +93,13 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:_vendor:$CODE/go"
+export GOPATH="$HOME/.go:$CODE/go"
 (( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do
   export PATH="$d/bin:$PATH"
 done
+export GO15VENDOREXPERIMENT=1
 
 # Shortcuts
 alias r="exec bash -l"

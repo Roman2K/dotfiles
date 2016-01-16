@@ -6,6 +6,7 @@ esac
 OPT=$HOME/opt
 CODE=$HOME/code
 BIN=$CODE/bin
+TMP=$HOME/tmp
 
 if (( IS_OSX )); then
   HOMEBREW=$OPT/homebrew
@@ -93,7 +94,7 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:$CODE/go"
+export GOPATH="$HOME/.go:$CODE/go:$TMP/go"
 (( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do
@@ -130,14 +131,20 @@ git-annex-docker() {
     "$@"
 }
 
-t() {
+t_mnt() {
   if (( IS_OSX )); then
-    (mount-tmp check || mount-tmp) && cd $HOME/tmp && ll hello_world
+    mount-tmp check || mount-tmp
   else
-    (test -d $HOME/tmp || (mkdir $HOME/tmp && touch $HOME/tmp/hello_world)) \
-      && cd $HOME/tmp \
-      && ll hello_world
+    test -d $TMP || (mkdir $TMP && touch $TMP/hello_world)
   fi
+}
+
+t() {
+  t_mnt && cd $TMP && ll hello_world
+}
+
+tgo() {
+  t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src
 }
 
 # Make it easier to cd: cd $go

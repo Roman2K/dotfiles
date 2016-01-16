@@ -180,12 +180,6 @@ if (( IS_OSX )); then
   d="/Applications/VirtualBox.app/Contents/MacOS"
   [ -d "$d" ] && export PATH="$d:$PATH"
 
-  # docker-machine env
-  export DOCKER_TLS_VERIFY="1"
-  export DOCKER_HOST="tcp://192.168.99.102:2376"
-  export DOCKER_CERT_PATH="/Users/roman/.docker/machine/machines/docker-dev"
-  export DOCKER_MACHINE_NAME="docker-dev"
-
   if [ -e /usr/local ] && [ $(find /usr/local | head -2 | wc -l) -gt 1 ]; then
     {
       echo "ATTENTION: /usr/local raped!"

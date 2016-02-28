@@ -2,6 +2,10 @@ Host rpi
   Hostname 192.168.0.200
   User root
 
+Host v
+  Hostname 192.168.0.200
+  User vecika
+
 Host imac
   Hostname 192.168.2.1
   User roman

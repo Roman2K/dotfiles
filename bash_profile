@@ -119,18 +119,6 @@ alias b="bundle exec"
 alias c="b rails c"
 alias sp="b rspec --format progress --colour --no-profile"
 
-git-annex() {
-  git-annex-docker git-annex "$@"
-}
-
-git-annex-docker() {
-  docker run \
-    -v /mnt/Volumes:/mnt/Volumes \
-    -v /mnt/roman:/mnt/roman \
-    -v /mnt/git-annex-data:/mnt/data \
-    "$@"
-}
-
 t_mnt() {
   if (( IS_OSX )); then
     mount-tmp check || mount-tmp

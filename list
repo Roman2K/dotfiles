@@ -15,3 +15,4 @@ S gemrc
 S ssh_config .ssh/config
 S mpv/input.conf .config/mpv/input.conf
 S mpv/mpv.conf .config/mpv/mpv.conf
+S youtube-dl .config/youtube-dl/config

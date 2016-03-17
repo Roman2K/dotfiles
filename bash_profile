@@ -168,9 +168,6 @@ if [ "$HOMEBREW" ]; then
 fi
 
 if (( IS_OSX )); then
-  # Java
-  export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
-
   # VirtualBox
   d="/Applications/VirtualBox.app/Contents/MacOS"
   [ -d "$d" ] && export PATH="$d:$PATH"

@@ -75,11 +75,6 @@ fi
 # bin/
 export PATH="$BIN:$PATH"
 
-# Bash
-export HISTSIZE=100000
-export HISTFILESIZE=$HISTSIZE
-export CDPATH=".:$CODE/go/src:$CODE:$HOME"
-
 # Vim / Neovim
 if [ "$HOMEBREW" ]; then
   d="$HOMEBREW/share/vim/vim74"
@@ -94,13 +89,22 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:$CODE/go:$TMP/go"
+export GOPATH="$HOME/.go:$CODE/go"
 (( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do
   export PATH="$d/bin:$PATH"
 done
-export GO15VENDOREXPERIMENT=1
+
+# Bash (after Go config because needs promptpath in $PATH)
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+export CDPATH="$CODE:$HOME"
+shopt -s cdable_vars
+while IFS=$'\t' read short long; do
+  [[ "$short" =~ ^[A-Za-z] ]] || continue
+  declare $short=$long
+done < <(promptpath)
 
 # Shortcuts
 alias r="exec bash -l"

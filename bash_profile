@@ -89,7 +89,7 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:$CODE/go"
+export GOPATH="$HOME/.go:$CODE/go:$TMP/go"
 (( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do

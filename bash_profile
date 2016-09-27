@@ -89,7 +89,7 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:$CODE/go:$TMP/go"
+export GOPATH="$HOME/.go:$CODE/go"
 (( IS_LINUX )) && export GOROOT="$OPT/go"
 IFS=':' read -ra dirs <<< "$GOPATH"
 for d in "${dirs[@]}"; do
@@ -136,7 +136,12 @@ t() {
 }
 
 tgo() {
-  t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src
+  t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
+    if [[ "$GOPATH" != "$TMP/go:"* ]]; then
+      export GOPATH="$TMP/go:$GOPATH" \
+        && echo "GOPATH prepended with $TMP/go"
+    fi
+  }
 }
 
 # Make it easier to cd: cd $go

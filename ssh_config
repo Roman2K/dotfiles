@@ -1,52 +1,12 @@
-Host rpi
-  Hostname 192.168.0.200
-  User root
-
-Host v
-  Hostname 192.168.0.200
-  User vecika
-
 Host imac
   Hostname 192.168.2.1
+  User roman
+
+Host ngrokimac
+  Hostname 0.tcp.ngrok.io
+  Port 18582
   User roman
 
 Host mb
   Hostname 192.168.2.2
   User roman
-
-Host 10.20.40.*
-  ProxyCommand ssh map.preprod nc -q 60 %h %p
-
-Host map.prod
-  Hostname 10.20.40.62
-  User ecommerce
-  ProxyCommand ssh map.preprod nc -q 60 %h %p
-
-Host map.worker1
-  Hostname 10.20.40.61
-  User worker
-  ProxyCommand ssh map.preprod nc -q 60 %h %p
-
-Host map.worker2
-  Hostname 10.20.40.62
-  User worker
-  ProxyCommand ssh map.preprod nc -q 60 %h %p
-
-Host map.staging
-  Hostname peloulou.bearstech.com
-  #Hostname staging.map.af83.com
-  User maphoto
-
-Host map.mapstaging
-  # cd ../worker/map-worker
-  Hostname staging.monalbumphoto.fr
-  User ecommerce
-
-Host map.preprod
-  Hostname map-preprod1.bearstech.com
-  # Hostname 78.40.125.168
-  User ecommerce
-
-Host map.print map.print.preprod
-  Hostname map-print-preprod.bearstech.com
-  User print

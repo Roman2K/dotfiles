@@ -14,15 +14,6 @@ elif (( IS_LINUX )); then
   HOMEBREW=$OPT/linuxbrew
 fi
 
-# TODO opt_dirs:
-#
-#   [ -d "$d/include" ] && export CPATH="$d/include:$CPATH"
-#   [ -d "$d/lib" ] && {
-#     export LIBRARY_PATH="$d/lib:$LIBRARY_PATH"
-#     export LD_LIBRARY_PATH="$d/lib:$LD_LIBRARY_PATH"
-#   }
-#
-
 _add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
@@ -137,10 +128,8 @@ t() {
 
 tgo() {
   t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
-    if [[ "$GOPATH" != "$TMP/go:"* ]]; then
-      export GOPATH="$TMP/go:$GOPATH" \
-        && echo "GOPATH prepended with $TMP/go"
-    fi
+    export GOPATH="$TMP/go" \
+      && echo "Set GOPATH=$GOPATH"
   }
 }
 

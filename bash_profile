@@ -85,7 +85,7 @@ export GOPATH="$CODE/go"
 # Bash (after Go config because needs promptpath in $PATH)
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
-export CDPATH="$CODE:$HOME"
+export CDPATH=".:$CODE:$HOME"
 shopt -s cdable_vars
 while IFS=$'\t' read short long; do
   [[ "$short" =~ ^[A-Za-z] ]] || continue

@@ -80,12 +80,7 @@ alias vi=$EDITOR
 export PATH="node_modules/.bin:$PATH"
 
 # Go
-export GOPATH="$HOME/.go:$CODE/go"
-(( IS_LINUX )) && export GOROOT="$OPT/go"
-IFS=':' read -ra dirs <<< "$GOPATH"
-for d in "${dirs[@]}"; do
-  export PATH="$d/bin:$PATH"
-done
+export GOPATH="$CODE/go"
 
 # Bash (after Go config because needs promptpath in $PATH)
 export HISTSIZE=100000

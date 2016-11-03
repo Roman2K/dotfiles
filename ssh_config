@@ -2,11 +2,6 @@ Host imac
   Hostname 192.168.2.1
   User roman
 
-Host ngrokimac
-  Hostname 0.tcp.ngrok.io
-  Port 18582
-  User roman
-
 Host mb
   Hostname 192.168.2.2
   User roman

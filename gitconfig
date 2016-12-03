@@ -1,8 +1,18 @@
 [user]
   email = roman.lenegrate@gmail.com
   name = Roman Le Négrate
+[github]
+  user = Roman2K
+
+# Commands
 [push]
   default = simple
+[merge]
+  tool = vimdiff
+[log]
+  decorate = true
+
+# Colors
 [color]
   ui = auto
 [color "branch"]
@@ -17,7 +27,3 @@
   frag = magenta
   old = red reverse
   new = green reverse
-[merge]
-  tool = vimdiff
-[github]
-  user = Roman2K

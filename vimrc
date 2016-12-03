@@ -1,90 +1,82 @@
-set nocompatible " Vim
-
-let root='~/.vim'
-
-filetype off
+set nocompatible
 
 ""
-" Vim-Plug plugins
+" Plugins
 "
-call plug#begin(root.'/plugged')
+call plug#begin('~/.vim-plug')
 Plug 'editorconfig/editorconfig-vim'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', {'dir': '~/opt/homebrew/opt/fzf'}
+ \ | Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'rking/ag.vim'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-eunuch'
-Plug 'mbbill/undotree'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'davidoc/taskpaper.vim'
-" Org mode
-Plug 'jceb/vim-orgmode'
-Plug 'tpope/vim-speeddating'
-" Gist
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 " Themes
 Plug 'w0ng/vim-hybrid'
 " Syntax highlighting
 Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'elzr/vim-json'
-Plug 'plasticboy/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 Plug 'evanmiller/nginx-vim-syntax'
-Plug 'digitaltoad/vim-jade'
-Plug 'wavded/vim-stylus'
-Plug 'dag/vim-fish'
 Plug 'zaiste/tmux.vim'
-Plug 'groenewege/vim-less'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
-Plug 'fatih/vim-go'
 call plug#end()
-
-""
-" Ruby
-"
-autocmd BufNewFile,BufRead Gemfile set filetype=ruby
-
-""
-" Themes
-"
-syntax on
-set background=dark
-silent! colorscheme hybrid
 
 ""
 " Config
 "
-set encoding=utf-8  " see http://unix.stackexchange.com/a/23414
-exec 'set directory='.root.'/swap,.'
-runtime macros/matchit.vim
+set encoding=utf-8
 set modeline
 set modelines=1
+set laststatus=2
+set ruler
 set bs=2
 set number
-set laststatus=2
 set hlsearch
 set cursorline
 set textwidth=80
 set nowrap
-set formatoptions-=t  " disable line wrapping
+set formatoptions=croqwan1j
 set mouse=
+set ignorecase
+set smartcase
 if exists('+colorcolumn')
   set colorcolumn=+1
 endif
 let mapleader=','
 nmap <C-l> :nohlsearch<CR>
 nmap Q <Nop>
+nmap q <Nop>
 nmap n nzz
 nmap N Nzz
 set splitbelow
 set splitright
-execute("vmap <Leader>w !ruby ~/code/leadinwrap/leadinwrap.rb " . &textwidth . " <CR>")
-let g:vim_markdown_folding_disabled=1
+
+""
+" wildmenu
+" See http://stackoverflow.com/a/526940
+"
+set wildmenu
+set wildmode=longest,list
+
+""
+" Theme
+"
+silent! colorscheme hybrid
+set background=dark
+
+""
+" Filetypes
+"
+autocmd BufNewFile,BufRead Gemfile,Vagrantfile set filetype=ruby
+
+""
+" Markdown
+"
+autocmd FileType markdown set textwidth=80
 
 ""
 " Fix for OS X crontab -e
@@ -93,58 +85,19 @@ let g:vim_markdown_folding_disabled=1
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 ""
-" ,r Run ./reload
+" fzf
 "
-command Reload execute "let _ = system('./reload')"
-nmap <Leader>r :Reload<CR>
+nmap <C-p> :FZF<CR>
 
 ""
-" CtrlP
+" SuperTab
 "
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'ag %s -l -g "" --nocolor'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
-
-""
-" Syntastic
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 2
-let g:syntastic_mode_map = {
-  \ "mode": "active",
-  \ "active_filetypes": [],
-  \ "passive_filetypes": ["go"] }
-let g:syntastic_ruby_mri_quiet_messages = { "regex": [
-  \ '\m^shadowing outer local variable ',
-  \ '\m`&'' interpreted as argument prefix',
-  \ '\m`*'' interpreted as argument prefix'
-  \ ] }
+let g:SuperTabCompleteCase = "match"
 
 ""
 " vim-go
-"
-let g:go_fmt_fail_silently = 1
+" 
+let g:go_bin_path = expand("~/.vim-go")
 let g:go_fmt_command = "goimports"
-
-""
-" wildmenu
-" http://stackoverflow.com/a/526940
-"
-set wildmenu
-set wildmode=longest,list
-
-""
-" Vagrant
-"
-autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
-
-""
-" Vundle
-" https://github.com/gmarik/vundle/issues/16#issuecomment-1044901
-"
-filetype plugin indent on
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

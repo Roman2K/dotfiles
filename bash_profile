@@ -1,17 +1,10 @@
-case "$(uname)" in
-  "Linux") IS_LINUX=1;;
-  "Darwin") IS_OSX=1;;
-esac
-
 OPT=$HOME/opt
 CODE=$HOME/code
 BIN=$CODE/bin
 TMP=$HOME/tmp
-
-if (( IS_OSX )); then
-  HOMEBREW=$OPT/homebrew
-elif (( IS_LINUX )); then
-  HOMEBREW=$OPT/linuxbrew
+HOMEBREW=$OPT/homebrew
+if [[ $- == *i* ]]; then
+  IS_INTERACTIVE=1
 fi
 
 _add_opt() {
@@ -36,23 +29,30 @@ _add_xenv() {
   [ -f "$compl" ] && source "$compl"
 }
 
-# Locale
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+##
+# bin/
+#
+export PATH="$BIN:$PATH"
 
+##
 # opt/
+#
 for d in "$OPT"/*; do
   _add_opt "$d"
 done
 export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
+##
 # rbenv & co
+#
 _add_xenv rbenv
 _add_xenv ndenv
 _add_xenv pyenv
 _add_xenv goenv
 
+##
 # pyenv Bash completion
+#
 v=$(pyenv global 2>/dev/null)
 if [[ "$v" ]] && [ "$v" != "system" ]; then
   d="$HOME/.pyenv/versions/$v/etc/bash_completion.d"
@@ -63,80 +63,104 @@ if [[ "$v" ]] && [ "$v" != "system" ]; then
   fi
 fi
 
-# bin/
-export PATH="$BIN:$PATH"
+##
+# Go
+# 
+# Add ~/.go first so that an accidental `go get`s would fetch dependencies there 
+# instead of polluting ~/code/go
+# 
+export GOPATH="$HOME/.go:$CODE/go"
 
-# Vim / Neovim
-if [ "$HOMEBREW" ]; then
-  d="$HOMEBREW/share/vim/vim74"
-  [ -d "$d" ] && export VIMRUNTIME="$d"
-fi
+##
+# Node.js
+#
+export PATH="node_modules/.bin:$PATH"
+
+##
+# Neovim
+#
 export EDITOR="nvim"
-#export EDITOR="vim"
 alias vim=$EDITOR
 alias vi=$EDITOR
 
-# Node.js
-export PATH="node_modules/.bin:$PATH"
+##
+# Locale
+#
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
-# Go
-export GOPATH="$CODE/go"
-
-# Bash (after Go config because needs promptpath in $PATH)
+##
+# Bash
+#
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
 export CDPATH=".:$CODE:$HOME"
+
+##
+# CDPATH fix
+#
+# When CDPATH is defined, Bash prints the directory after cd-ing to relative
+# paths. It's problematic for shims (ndenv, etc.) that use cd: directories land
+# in the stdout of the script being run via the shim. Prevent that by
+# suppressing cd's stdout output.
+#
+cd() {
+  builtin cd "$@" > /dev/null
+}
+
+##
+# cd aliases
+#
+# Defined after opt/ has been added to PATH because we need promptpath
+#
 shopt -s cdable_vars
 while IFS=$'\t' read short long; do
   [[ "$short" =~ ^[A-Za-z] ]] || continue
   declare $short=$long
 done < <(promptpath)
 
+##
 # Shortcuts
+#
 alias r="exec bash -l"
 alias m="tmux"
+alias ls='ls -G'
 alias ll="ls -lph"
 alias st="git status"
-alias mst="mg status"
 alias di="git diff"
 alias dis="git diff --staged"
+alias l="git log --stat"
 alias a="git add"
 alias co="git commit"
 alias prebase="git pull --rebase"
-alias lg="git log --pretty=format:'%C(yellow)%h %C(white)%ci%Creset %s%C(blue)%d %C(yellow)%an%Creset' --abbrev-commit"
 alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
-alias sp="b rspec --format progress --colour --no-profile"
 
-t_mnt() {
-  if (( IS_OSX )); then
-    mount-tmp check || mount-tmp
-  else
-    test -d $TMP || (mkdir $TMP && touch $TMP/hello_world)
-  fi
-}
+##
+# grep colors
+#
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 
+##
+# ~/tmp
+#
 t() {
-  t_mnt && cd $TMP && ll hello_world
+  _t_mnt && cd $TMP && ll hello_world
 }
-
 tgo() {
-  t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
+  _t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
     export GOPATH="$TMP/go" \
       && echo "Set GOPATH=$GOPATH"
   }
 }
+_t_mnt() {
+  mount-tmp check || mount-tmp
+}
 
-# Make it easier to cd: cd $go
-go="$CODE/go/src"
-
-# Colors
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
-(( IS_OSX )) && alias ls='ls -G'
-(( IS_LINUX )) && alias ls='ls --color=auto'
-
+##
 # $PS1
+#
 PROMPT_COMMAND='_ps1'
 GIT_PS1_SHOWDIRTYSTATE=1
 _ps1() {
@@ -155,45 +179,70 @@ _ps1() {
   [ $last -ne 0 ] && PS1="${last_status_color}${last}${RESET} $PS1"
 }
 
-if [ "$HOMEBREW" ]; then
-  f="$HOMEBREW"/etc/bash_completion
-  [ -f "$f" ] && source "$f"
-fi
+##
+# VirtualBox
+#
+d="/Applications/VirtualBox.app/Contents/MacOS"
+[ -d "$d" ] && export PATH="$d:$PATH"
 
-if (( IS_OSX )); then
-  # VirtualBox
-  d="/Applications/VirtualBox.app/Contents/MacOS"
-  [ -d "$d" ] && export PATH="$d:$PATH"
-
-  if [ -e /usr/local ] && [ $(find /usr/local | head -2 | wc -l) -gt 1 ]; then
+##
+# /usr/local sanity check
+#
+_check_empty() {
+  local d=$1
+  if [ -e $d ] && [ $(find $d | head -2 | wc -l) -gt 1 ]; then
     {
-      echo "ATTENTION: /usr/local raped!"
+      echo "ATTENTION: non-empty $d"
       echo
-      find /usr/local | while read line; do
-        echo "  >> $line"
+      find $d | while read line; do
+        echo "  found $line"
       done
       echo
     } >&2
   fi
+}
+_check_empty "/usr/local"
+
+##
+# Machine-specific bash config
+#
+if [ -d "$HOME/.bash/enabled" ]; then
+  while read f; do
+    source "$f"
+  done < <(find "$HOME/.bash/enabled" \
+    -mindepth 1 -maxdepth 1 \
+    -not -type d \
+    -name \*.sh \
+  )
 fi
 
-if (( IS_LINUX )); then
-  # Git
-  source /usr/share/bash-completion/completions/git
+##
+# fzf
+#
+_load_fzf() {
+  local shdir="$HOMEBREW/opt/fzf/shell"
+  (( IS_INTERACTIVE )) && source "$shdir/completion.bash" 2> /dev/null
+  source "$shdir/key-bindings.bash"
+}
+_load_fzf
 
-  # Postgres
-  d="/usr/lib/postgresql/9.3/bin"
-  if [ -d "$d" ]; then
-    export PATH="$d:$PATH"
-  fi
-fi
+##
+# Bash completion
+#
+# bash_completion must be sourced after fzf, otherzise cdable_vars are not 
+# autocompleted (don't know why)
+#
+_enable_bashcomp() {
+  local f="$HOMEBREW"/etc/bash_completion
+  [ -f "$f" ] && source "$f"
+}
+_enable_bashcomp
 
-# Custom
-while read f; do
-  source "$f"
-done < <(find $HOME/.bash/enabled -mindepth 1 -maxdepth 1 -not -type d -name \*.sh)
-
-if [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
+##
+# Finally, always run within tmux
+#
+if (( IS_INTERACTIVE )) \
+    && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
   $HOMEBREW/bin/tmux
   return
 fi

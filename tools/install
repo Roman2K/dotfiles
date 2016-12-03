@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-$:.unshift __dir__ + '/lib'
-require 'dotfiles'
-Dotfiles.with_each_installer(__dir__ + '/..', &:install)

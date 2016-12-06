@@ -221,16 +221,12 @@ fi
 #
 _load_fzf() {
   local shdir="$HOMEBREW/opt/fzf/shell"
-  (( IS_INTERACTIVE )) && source "$shdir/completion.bash" 2> /dev/null
   source "$shdir/key-bindings.bash"
 }
 _load_fzf
 
 ##
 # Bash completion
-#
-# bash_completion must be sourced after fzf, otherzise cdable_vars are not 
-# autocompleted (don't know why)
 #
 _enable_bashcomp() {
   local f="$HOMEBREW"/etc/bash_completion

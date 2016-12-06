@@ -29,20 +29,18 @@ call plug#end()
 " Config
 "
 set encoding=utf-8
-set modeline
-set modelines=1
+set modeline modelines=1
+set number
 set laststatus=2
 set ruler
 set bs=2
-set number
 set hlsearch
 set cursorline
 set textwidth=80
 set nowrap
 set formatoptions=croqwan1j
 set mouse=
-set ignorecase
-set smartcase
+set ignorecase smartcase
 if exists('+colorcolumn')
   set colorcolumn=+1
 endif

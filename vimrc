@@ -3,7 +3,7 @@ set nocompatible
 ""
 " Plugins
 "
-call plug#begin('~/.vim-plug')
+call plug#begin("~/.vim-plug")
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', {'dir': '~/opt/homebrew/opt/fzf'}
  \ | Plug 'junegunn/fzf.vim'
@@ -41,13 +41,13 @@ set nowrap
 set formatoptions=croqwan1j
 set mouse=
 set ignorecase smartcase
-if exists('+colorcolumn')
+if exists("+colorcolumn")
   set colorcolumn=+1
 endif
-let mapleader=','
-nmap <C-l> :nohlsearch<CR>
-nmap Q <Nop>
-nmap q <Nop>
+let mapleader=","
+nmap <c-l> :nohlsearch<cr>
+nmap Q <nop>
+nmap q <nop>
 nmap n nzz
 nmap N Nzz
 set splitbelow
@@ -80,12 +80,12 @@ autocmd FileType markdown set textwidth=80
 " Fix for OS X crontab -e
 " See http://calebthompson.io/crontab-and-vim-sitting-in-a-tree/
 "
-autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd FileType crontab setlocal nobackup nowritebackup
 
 ""
 " fzf
 "
-nmap <C-p> :FZF<CR>
+nmap <c-p> :FZF<cr>
 
 ""
 " SuperTab
@@ -99,3 +99,6 @@ let g:go_bin_path = expand("~/.vim-go")
 let g:go_fmt_command = "goimports"
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+autocmd FileType go nmap <leader><leader> <Plug>(go-build)
+autocmd FileType go nmap <leader>n :cnext<cr>
+autocmd FileType go nmap <leader>t <Plug>(go-test)

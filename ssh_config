@@ -1,11 +1,3 @@
-Host imac
-  Hostname 192.168.2.1
-  User roman
-
-Host mb
-  Hostname 192.168.2.2
-  User roman
-
 Host bankmon
   Hostname 46.101.252.109
   User core

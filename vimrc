@@ -45,7 +45,6 @@ if exists("+colorcolumn")
   set colorcolumn=+1
 endif
 let mapleader=","
-nmap <c-l> :nohlsearch<cr>
 nmap Q <nop>
 nmap q <nop>
 nmap n nzz
@@ -83,11 +82,6 @@ autocmd FileType markdown set textwidth=80
 autocmd FileType crontab setlocal nobackup nowritebackup
 
 ""
-" fzf
-"
-nmap <c-p> :FZF<cr>
-
-""
 " SuperTab
 "
 let g:SuperTabCompleteCase = "match"
@@ -99,6 +93,13 @@ let g:go_bin_path = expand("~/.vim-go")
 let g:go_fmt_command = "goimports"
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+""
+" Key bindings
+"
+nmap <c-l> :nohlsearch<cr>
+nmap <c-p> :FZF<cr>
+nmap <leader>s :wa<cr>
+nmap <leader>n :cnext<cr>
 autocmd FileType go nmap <leader><leader> <Plug>(go-build)
-autocmd FileType go nmap <leader>n :cnext<cr>
 autocmd FileType go nmap <leader>t <Plug>(go-test)

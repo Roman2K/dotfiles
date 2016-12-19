@@ -180,10 +180,15 @@ _ps1() {
 }
 
 ##
-# VirtualBox
+# Applications
 #
-d="/Applications/VirtualBox.app/Contents/MacOS"
-[ -d "$d" ] && export PATH="$d:$PATH"
+dirs=(
+  /Applications/VirtualBox.app/Contents/MacOS
+  /Applications/git-annex.app/Contents/MacOS
+)
+for d in ${dirs[*]}; do
+  [ -d "$d" ] && export PATH="$d:$PATH"
+done
 
 ##
 # /usr/local sanity check
@@ -233,6 +238,18 @@ _enable_bashcomp() {
   [ -f "$f" ] && source "$f"
 }
 _enable_bashcomp
+
+##
+# gpg
+#
+if ! pgrep -q gpg-agent; then
+  gpg-agent \
+    --daemon \
+    --use-standard-socket \
+    --pinentry-program /Users/roman/opt/homebrew/bin/pinentry-mac \
+    --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
+fi
+source ~/.gnupg/.gpg-agent-info
 
 ##
 # Finally, always run within tmux

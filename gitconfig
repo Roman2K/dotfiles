@@ -1,29 +1,32 @@
 [user]
-  email = roman.lenegrate@gmail.com
-  name = Roman Le Négrate
+	email = roman.lenegrate@gmail.com
+	name = Roman Le Négrate
+	signingkey = F722EFA000828C1D
 [github]
-  user = Roman2K
+	user = Roman2K
 
 # Commands
+[commit]
+	gpgsign = true
 [push]
-  default = simple
+	default = simple
 [merge]
-  tool = vimdiff
+	tool = vimdiff
 [log]
-  decorate = true
+	decorate = true
 
 # Colors
 [color]
-  ui = auto
+	ui = auto
 [color "branch"]
-  current = green
-  remote = red
+	current = green
+	remote = red
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [color "diff"]
-  meta = yellow
-  frag = magenta
-  old = red reverse
-  new = green reverse
+	meta = yellow
+	frag = magenta
+	old = red reverse
+	new = green reverse

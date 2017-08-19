@@ -3,9 +3,6 @@ CODE=$HOME/code
 BIN=$CODE/bin
 TMP=$HOME/tmp
 HOMEBREW=$OPT/homebrew
-if [[ $- == *i* ]]; then
-  IS_INTERACTIVE=1
-fi
 
 _add_opt() {
   local d=$1
@@ -19,6 +16,33 @@ _add_opt() {
   }
 }
 
+_add_opt "$HOMEBREW"
+
+##
+# Run within tmux by default
+#
+if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
+  tmux
+  return
+fi
+
+##
+# opt/
+#
+for d in "$OPT"/*; do
+  [ "$d" != "$HOMEBREW" ] || continue
+  _add_opt "$d"
+done
+export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
+
+##
+# bin/
+#
+export PATH="$BIN:$PATH"
+
+##
+# rbenv, etc.
+#
 _add_xenv() {
   local name=$1
   local root=$HOME/.$name
@@ -28,23 +52,6 @@ _add_xenv() {
   local compl="$root/completions/$name.bash"
   [ -f "$compl" ] && source "$compl"
 }
-
-##
-# bin/
-#
-export PATH="$BIN:$PATH"
-
-##
-# opt/
-#
-for d in "$OPT"/*; do
-  _add_opt "$d"
-done
-export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
-
-##
-# rbenv & co
-#
 _add_xenv rbenv
 _add_xenv ndenv
 _add_xenv pyenv
@@ -193,20 +200,14 @@ done
 ##
 # /usr/local sanity check
 #
-_check_empty() {
-  local d=$1
-  if [ -e $d ] && [ $(find $d | head -2 | wc -l) -gt 1 ]; then
-    {
-      echo "ATTENTION: non-empty $d"
-      echo
-      find $d | while read line; do
-        echo "  found $line"
-      done
-      echo
-    } >&2
+_check_empty_usrlocal() {
+  local d=/usr/local
+  local entries=$(ls "$d")
+  if [ -n "$entries" ] && [ "$entries" != "remotedesktop" ]; then
+    echo "ATTENTION: non-empty $d" >&2
   fi
 }
-_check_empty "/usr/local"
+_check_empty_usrlocal
 
 ##
 # Machine-specific bash config
@@ -250,14 +251,5 @@ if ! pgrep -q gpg-agent; then
     --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
 fi
 source ~/.gnupg/.gpg-agent-info
-
-##
-# Finally, always run within tmux
-#
-if (( IS_INTERACTIVE )) \
-    && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
-  $HOMEBREW/bin/tmux
-  return
-fi
 
 true

@@ -9,3 +9,13 @@ Host mb
 Host bankmon
   Hostname 46.101.252.109
   User core
+
+Host ngrokimac
+  Hostname 0.tcp.eu.ngrok.io
+  Port 17936
+  User roman
+
+Host cullimac
+  Hostname 90.71.116.3
+  Port 2222
+  User roman

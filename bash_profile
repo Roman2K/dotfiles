@@ -3,8 +3,9 @@ CODE=$HOME/code
 BIN=$CODE/bin
 TMP=$HOME/tmp
 HOMEBREW=$OPT/homebrew
+BINS=$OPT/bins
 
-_add_opt() {
+add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
   [ -d "$d/sbin" ] && export PATH="$d/sbin:$PATH"
@@ -16,79 +17,47 @@ _add_opt() {
   }
 }
 
-_add_opt "$HOMEBREW"
-
 ##
 # Run within tmux by default
 #
+add_opt "$HOMEBREW"
+add_opt "$BINS"
 if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
   tmux
-  return
 fi
 
 ##
 # opt/
 #
 for d in "$OPT"/*; do
-  [ "$d" != "$HOMEBREW" ] || continue
-  _add_opt "$d"
+  [ "$d" = "$HOMEBREW" -o "$d" = "$BINS" ] && continue
+  add_opt "$d"
 done
-export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
 ##
 # bin/
 #
 export PATH="$BIN:$PATH"
+export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
 ##
 # rbenv, etc.
 #
-_add_xenv() {
+add_xenv() {
   local name=$1
   local root=$HOME/.$name
   [ -d "$root" ] || return
-  _add_opt "$root"
+  add_opt "$root"
   export PATH="$root/shims:$PATH"
   local compl="$root/completions/$name.bash"
   [ -f "$compl" ] && source "$compl"
 }
-_add_xenv rbenv
-_add_xenv ndenv
-_add_xenv pyenv
-_add_xenv goenv
-
-##
-# pyenv Bash completion
-#
-v=$(pyenv global 2>/dev/null)
-if [[ "$v" ]] && [ "$v" != "system" ]; then
-  d="$HOME/.pyenv/versions/$v/etc/bash_completion.d"
-  if [ -d "$d" ]; then
-    while read f; do
-      source "$f"
-    done < <(find "$d" -mindepth 1 -maxdepth 1)
-  fi
-fi
-
-##
-# Go
-# 
-# Add ~/.go first so that an accidental `go get`s would fetch dependencies there 
-# instead of polluting ~/code/go
-# 
-export GOPATH="$HOME/.go:$CODE/go"
-
-##
-# Node.js
-#
+add_xenv rbenv
+add_xenv ndenv
+add_xenv pyenv
+add_xenv goenv
 export PATH="node_modules/.bin:$PATH"
-
-##
-# Neovim
-#
-export EDITOR="nvim"
-alias vim=$EDITOR
-alias vi=$EDITOR
+export GOPATH="$HOME/.go:$CODE/go"
 
 ##
 # Locale
@@ -102,29 +71,6 @@ export LANG=en_US.UTF-8
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
 export CDPATH=".:$CODE:$HOME"
-
-##
-# CDPATH fix
-#
-# When CDPATH is defined, Bash prints the directory after cd-ing to relative
-# paths. It's problematic for shims (ndenv, etc.) that use cd: directories land
-# in the stdout of the script being run via the shim. Prevent that by
-# suppressing cd's stdout output.
-#
-cd() {
-  builtin cd "$@" > /dev/null
-}
-
-##
-# cd aliases
-#
-# Defined after opt/ has been added to PATH because we need promptpath
-#
-shopt -s cdable_vars
-while IFS=$'\t' read short long; do
-  [[ "$short" =~ ^[A-Za-z] ]] || continue
-  declare $short=$long
-done < <(promptpath)
 
 ##
 # Shortcuts
@@ -143,34 +89,48 @@ alias prebase="git pull --rebase"
 alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 
 ##
-# grep colors
+# cd aliases
 #
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+# Defined after opt/ has been added to PATH because we need promptpath
+#
+shopt -s cdable_vars
+while IFS=$'\t' read short long; do
+  [[ "$short" =~ ^[A-Za-z] ]] || continue
+  declare $short=$long
+done < <(promptpath)
+
+##
+# Neovim
+#
+export EDITOR="nvim"
+alias vim=$EDITOR
+alias vi=$EDITOR
 
 ##
 # ~/tmp
 #
 t() {
-  _t_mnt && cd $TMP && ll hello_world
+  t_mnt && cd $TMP && ll hello_world
 }
 tgo() {
-  _t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
+  t_mnt && mkdir -p $TMP/go/src && ll $TMP/hello_world && cd $TMP/go/src && {
     export GOPATH="$TMP/go" \
       && echo "Set GOPATH=$GOPATH"
   }
 }
-_t_mnt() {
+t_mnt() {
   mount-tmp check || mount-tmp
 }
 
 ##
 # $PS1
 #
-PROMPT_COMMAND='_ps1'
+PROMPT_COMMAND='prompt'
 GIT_PS1_SHOWDIRTYSTATE=1
-_ps1() {
+prompt() {
   local last=$?
   local RED="\[\033[31m\]"
   local GREEN="\[\033[32m\]"
@@ -187,69 +147,94 @@ _ps1() {
 }
 
 ##
-# Applications
+# Application executables
 #
-dirs=(
-  /Applications/VirtualBox.app/Contents/MacOS
-  /Applications/git-annex.app/Contents/MacOS
-)
-for d in ${dirs[*]}; do
-  [ -d "$d" ] && export PATH="$d:$PATH"
-done
+add_app_exes() {
+  local dirs=(
+    /Applications/VirtualBox.app/Contents/MacOS
+    /Applications/git-annex.app/Contents/MacOS
+  )
+  for d in ${dirs[*]}; do
+    [ -d "$d" ] && export PATH="$d:$PATH"
+  done
+}
+add_app_exes
 
 ##
 # /usr/local sanity check
 #
-_check_empty_usrlocal() {
+check_empty_usrlocal() {
   local d=/usr/local
   local entries=$(ls "$d")
   if [ -n "$entries" ] && [ "$entries" != "remotedesktop" ]; then
     echo "ATTENTION: non-empty $d" >&2
   fi
 }
-_check_empty_usrlocal
-
-##
-# Machine-specific bash config
-#
-if [ -d "$HOME/.bash/enabled" ]; then
-  while read f; do
-    source "$f"
-  done < <(find "$HOME/.bash/enabled" \
-    -mindepth 1 -maxdepth 1 \
-    -not -type d \
-    -name \*.sh \
-  )
-fi
+check_empty_usrlocal
 
 ##
 # fzf
 #
-_load_fzf() {
+configure_fzf() {
   local shdir="$HOMEBREW/opt/fzf/shell"
   source "$shdir/key-bindings.bash"
 }
-_load_fzf
+configure_fzf
 
 ##
 # Bash completion
 #
-_enable_bashcomp() {
+configure_bashcomp() {
   local f="$HOMEBREW"/etc/bash_completion
   [ -f "$f" ] && source "$f"
 }
-_enable_bashcomp
+configure_bashcomp
+
+##
+# pyenv Bash completion
+#
+configure_pyenv_bashcomp() {
+  local v=$(pyenv global 2>/dev/null)
+  if [[ "$v" ]] && [ "$v" != "system" ]; then
+    local d="$HOME/.pyenv/versions/$v/etc/bash_completion.d"
+    if [ -d "$d" ]; then
+      while read f; do
+        source "$f"
+      done < <(find "$d" -mindepth 1 -maxdepth 1)
+    fi
+  fi
+}
+configure_pyenv_bashcomp
 
 ##
 # gpg
 #
-if ! pgrep -q gpg-agent; then
-  gpg-agent \
-    --daemon \
-    --use-standard-socket \
-    --pinentry-program /Users/roman/opt/homebrew/bin/pinentry-mac \
-    --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
-fi
-source ~/.gnupg/.gpg-agent-info
+configure_gpg() {
+  if ! pgrep -q gpg-agent; then
+    gpg-agent \
+      --daemon \
+      --use-standard-socket \
+      --pinentry-program $HOMEBREW/bin/pinentry-mac \
+      --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
+  fi
+  source ~/.gnupg/.gpg-agent-info
+}
+configure_gpg
+
+##
+# Local bash config
+#
+configure_local_bash_config() {
+  if [ -d "$HOME/.bash/enabled" ]; then
+    while read f; do
+      source "$f"
+    done < <(find "$HOME/.bash/enabled" \
+      -mindepth 1 -maxdepth 1 \
+      -not -type d \
+      -name \*.sh \
+    )
+  fi
+}
+configure_local_bash_config
 
 true

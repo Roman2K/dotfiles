@@ -89,6 +89,7 @@ alias prebase="git pull --rebase"
 alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
+alias rg="rg -g '!vendor'"
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 
 ##
@@ -123,6 +124,16 @@ tgo() {
 }
 t_mnt() {
   mount-tmp check || mount-tmp
+}
+
+##
+# docker-machine
+#
+dksetup() {
+  docker-machine start
+  [ "$(docker-machine status)" == Running ] \
+    && eval "$(docker-machine env)" \
+    && docker ps
 }
 
 ##

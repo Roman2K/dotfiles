@@ -90,6 +90,8 @@ alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
 alias rg="rg -g '!vendor'"
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t"
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 
 ##

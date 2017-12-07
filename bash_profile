@@ -219,21 +219,6 @@ configure_pyenv_bashcomp() {
 configure_pyenv_bashcomp
 
 ##
-# gpg
-#
-configure_gpg() {
-  if ! pgrep -q gpg-agent; then
-    gpg-agent \
-      --daemon \
-      --use-standard-socket \
-      --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
-  fi
-  source ~/.gnupg/.gpg-agent-info
-  export GPG_TTY=$(tty)
-}
-configure_gpg
-
-##
 # Local bash config
 #
 configure_local_bash_config() {
@@ -248,5 +233,12 @@ configure_local_bash_config() {
   fi
 }
 configure_local_bash_config
+
+##
+# gpg
+#
+if ! pgrep gpg-agent > /dev/null; then
+  gpg-agent --daemon
+fi
 
 true

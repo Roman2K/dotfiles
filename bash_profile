@@ -2,8 +2,14 @@ OPT=$HOME/opt
 CODE=$HOME/code
 BIN=$CODE/bin
 TMP=$HOME/tmp
-HOMEBREW=$OPT/homebrew
 BINS=$OPT/bins
+HOMEBREW=$OPT/homebrew
+LINUXBREW=$OPT/linuxbrew
+
+BREW=$HOMEBREW
+if [ -d $LINUXBREW ]; then
+  BREW=$LINUXBREW
+fi
 
 add_opt() {
   local d=$1
@@ -20,7 +26,7 @@ add_opt() {
 ##
 # Run within tmux by default
 #
-add_opt "$HOMEBREW"
+add_opt "$BREW"
 add_opt "$BINS"
 if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
   tmux
@@ -30,7 +36,7 @@ fi
 # opt/
 #
 for d in "$OPT"/*; do
-  [ "$d" = "$HOMEBREW" -o "$d" = "$BINS" ] && continue
+  [ "$d" = "$BREW" -o "$d" = "$BINS" ] && continue
   add_opt "$d"
 done
 
@@ -92,7 +98,8 @@ alias c="b rails c"
 alias rg="rg -g '!vendor'"
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+alias grep="grep --color=auto"
+export GREP_COLORS='1;31'
 
 ##
 # cd aliases
@@ -173,22 +180,10 @@ add_app_exes() {
 add_app_exes
 
 ##
-# /usr/local sanity check
-#
-check_empty_usrlocal() {
-  local d=/usr/local
-  local entries=$(ls "$d")
-  if [ -n "$entries" ] && [ "$entries" != "remotedesktop" ]; then
-    echo "ATTENTION: non-empty $d" >&2
-  fi
-}
-check_empty_usrlocal
-
-##
 # fzf
 #
 configure_fzf() {
-  local shdir="$HOMEBREW/opt/fzf/shell"
+  local shdir="$BREW/opt/fzf/shell"
   source "$shdir/key-bindings.bash"
 }
 configure_fzf
@@ -197,7 +192,7 @@ configure_fzf
 # Bash completion
 #
 configure_bashcomp() {
-  local f="$HOMEBREW"/etc/bash_completion
+  local f="$BREW"/etc/bash_completion
   [ -f "$f" ] && source "$f"
 }
 configure_bashcomp
@@ -235,10 +230,8 @@ configure_local_bash_config() {
 configure_local_bash_config
 
 ##
-# gpg
+# gpg2
 #
-if ! pgrep gpg-agent > /dev/null; then
-  gpg-agent --daemon
-fi
+export GPG_TTY=$(tty)
 
 true

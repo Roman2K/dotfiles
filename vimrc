@@ -40,7 +40,6 @@ set textwidth=80
 set nowrap
 set formatoptions=croq
 set mouse=
-set ignorecase smartcase
 if exists("+colorcolumn")
   set colorcolumn=+1
 endif
@@ -51,6 +50,7 @@ nmap n nzz
 nmap N Nzz
 set splitbelow
 set splitright
+set visualbell " disable bell sound
 
 ""
 " wildmenu

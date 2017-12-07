@@ -165,7 +165,6 @@ prompt() {
 add_app_exes() {
   local dirs=(
     /Applications/VirtualBox.app/Contents/MacOS
-    /Applications/git-annex.app/Contents/MacOS
   )
   for d in ${dirs[*]}; do
     [ -d "$d" ] && export PATH="$d:$PATH"
@@ -227,10 +226,10 @@ configure_gpg() {
     gpg-agent \
       --daemon \
       --use-standard-socket \
-      --pinentry-program $HOMEBREW/bin/pinentry-mac \
       --write-env-file ~/.gnupg/.gpg-agent-info > /dev/null
   fi
   source ~/.gnupg/.gpg-agent-info
+  export GPG_TTY=$(tty)
 }
 configure_gpg
 

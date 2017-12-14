@@ -233,5 +233,6 @@ configure_local_bash_config
 # gpg2
 #
 export GPG_TTY=$(tty)
+alias gpg=gpg2
 
 true

@@ -20,7 +20,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'elzr/vim-json'
 Plug 'gabrielelana/vim-markdown'
-Plug 'evanmiller/nginx-vim-syntax'
+Plug 'chr4/nginx.vim'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 call plug#end()
@@ -58,6 +58,11 @@ set visualbell " disable bell sound
 "
 set wildmenu
 set wildmode=longest,list
+
+""
+" Unprintable characters
+"
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 
 ""
 " Theme

@@ -23,6 +23,7 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'chr4/nginx.vim'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
+Plug 'elmcast/elm-vim'
 call plug#end()
 
 ""

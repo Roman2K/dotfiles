@@ -146,6 +146,17 @@ dksetup() {
 }
 
 ##
+# vol
+#
+vol() {
+  if [ $# != 1 ]; then
+    osascript -e "output volume of (get volume settings)"
+    return $?
+  fi
+  osascript -e "set volume output volume $1"
+}
+
+##
 # $PS1
 #
 PROMPT_COMMAND='prompt'

@@ -6,16 +6,30 @@ Host mb
   Hostname 192.168.1.102
   User roman
 
-Host bankmon
-  Hostname 46.101.252.109
-  User core
+Host dev
+  Hostname 192.168.1.105
+  User roman
+
+Host gce-free
+  Hostname 35.195.92.187
+  User roman
+
+Host cullimac
+  Hostname 90.71.116.3
+  Port 2222
+  User roman
+
+Host culldev
+  Hostname 90.71.116.3
+  Port 2223
+  User roman
 
 Host ngrokimac
   Hostname 0.tcp.eu.ngrok.io
   Port 17936
   User roman
 
-Host cullimac
-  Hostname 90.71.116.3
-  Port 2222
+Host ngrokdev
+  Hostname 0.tcp.eu.ngrok.io
+  Port 13924
   User roman

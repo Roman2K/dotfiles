@@ -24,6 +24,7 @@ Plug 'chr4/nginx.vim'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 
 ""

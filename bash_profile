@@ -28,8 +28,16 @@ add_opt() {
 #
 add_opt "$BREW"
 add_opt "$BINS"
+configure_tmux() {
+  local shell="bash"
+  if which reattach-to-user-namespace &> /dev/null; then
+    shell="reattach-to-user-namespace $shell"
+  fi
+  alias m="tmux new $shell"
+}
+configure_tmux
 if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
-  tmux
+  m
 fi
 
 ##
@@ -82,7 +90,6 @@ export CDPATH=".:$CODE:$HOME"
 # Shortcuts
 #
 alias r="exec bash -l"
-alias m="tmux"
 alias ls='ls -G'
 alias ll="ls -lph"
 alias st="git status"

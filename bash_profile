@@ -33,7 +33,7 @@ configure_tmux() {
   if which reattach-to-user-namespace &> /dev/null; then
     shell="reattach-to-user-namespace $shell"
   fi
-  alias m="tmux new $shell"
+  alias m="tmux set -g default-command '$shell' \; new"
 }
 configure_tmux
 if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then

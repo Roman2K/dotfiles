@@ -60,6 +60,11 @@ export PATH="$BIN:$PATH"
 export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
 ##
+# .local
+#
+add_opt $HOME/.local
+
+##
 # rbenv, etc.
 #
 add_xenv() {
@@ -111,6 +116,7 @@ alias rg="rg -g '!vendor'"
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias grep="grep --color=auto"
+alias serve="python3 -m http.server 8000"
 export GREP_COLORS='1;31'
 
 ##

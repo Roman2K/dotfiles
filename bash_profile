@@ -152,6 +152,11 @@ tgo() {
 t_mnt() {
   mount-tmp check || mount-tmp
 }
+mount-tmp() {
+  exe=mount-tmp
+  [[ "$(uname -s)" = "Linux" ]] && exe=$exe-linux
+  command $exe "$@"
+}
 
 ##
 # docker-machine

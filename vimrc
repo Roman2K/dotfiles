@@ -24,7 +24,6 @@ Plug 'chr4/nginx.vim'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
-Plug 'neovimhaskell/haskell-vim'
 call plug#end()
 
 ""
@@ -52,7 +51,6 @@ nmap n nzz
 nmap N Nzz
 set splitbelow
 set splitright
-set visualbell " disable bell sound
 
 ""
 " wildmenu
@@ -109,5 +107,6 @@ nmap <c-l> :nohlsearch<cr>
 nmap <c-p> :FZF<cr>
 nmap <leader>s :wa<cr>
 nmap <leader>n :cnext<cr>
+nmap <leader>x :silent exec "!echo \| nc -U /tmp/execod.sock"<cr>
 autocmd FileType go nmap <leader><leader> <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)

@@ -23,6 +23,11 @@ add_opt() {
   }
 }
 
+command_exists() {
+  cmd=$1
+  command -v $cmd > /dev/null
+}
+
 ##
 # Run within tmux by default
 #
@@ -30,7 +35,7 @@ add_opt "$BREW"
 add_opt "$BINS"
 configure_tmux() {
   local shell="bash"
-  if which reattach-to-user-namespace &> /dev/null; then
+  if command_exists reattach-to-user-namespace; then
     shell="reattach-to-user-namespace $shell"
   fi
   alias m="tmux set -g default-command '$shell' \; new"
@@ -251,6 +256,12 @@ configure_local_bash_config
 # gpg2
 #
 export GPG_TTY=$(tty)
-alias gpg=gpg2
+gpg_is_v2() {
+  command_exists gpg \
+    && command gpg --version | grep -q '(GnuPG) 2\.'
+}
+if ! gpg_is_v2; then
+  alias gpg=gpg2
+fi
 
 true

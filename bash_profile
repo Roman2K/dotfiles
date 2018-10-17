@@ -228,6 +228,8 @@ configure_fzf
 configure_bashcomp() {
   local f="$BREW"/etc/bash_completion
   [ -f "$f" ] && source "$f"
+  local git_prompt=/usr/lib/git-core/git-sh-prompt
+  [ -f "$git_prompt" ] && source "$git_prompt"
 }
 configure_bashcomp
 

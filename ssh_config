@@ -20,13 +20,9 @@ Host cullimac
   User roman
 
 Host culldev
-  Hostname 90.71.116.3
+  # Hostname 90.71.116.3
+  Hostname 90.171.117.137
   Port 2223
-  User roman
-
-Host ngrokimac
-  Hostname 0.tcp.eu.ngrok.io
-  Port 17936
   User roman
 
 Host ngrokdev

@@ -26,6 +26,7 @@ Plug 'digitaltoad/vim-jade'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
+Plug 'rhysd/vim-crystal'
 call plug#end()
 
 ""

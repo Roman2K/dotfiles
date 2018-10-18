@@ -1,7 +1,0 @@
-bash
-  _vars
-  vars cleanup
-
-ag -> the_platinum_searcher
-
-for f in launchd/*.plist; do (cd ~/Library/LaunchAgents/ && ln -s "../../code/dotfiles/$f") || break; done

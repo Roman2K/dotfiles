@@ -60,6 +60,11 @@ export PATH="$BIN:$PATH"
 export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
 
 ##
+# .local
+#
+add_opt $HOME/.local
+
+##
 # rbenv, etc.
 #
 add_xenv() {
@@ -111,6 +116,7 @@ alias rg="rg -g '!vendor'"
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias grep="grep --color=auto"
+alias serve="python3 -m http.server 8000"
 export GREP_COLORS='1;31'
 
 ##
@@ -145,6 +151,11 @@ tgo() {
 }
 t_mnt() {
   mount-tmp check || mount-tmp
+}
+mount-tmp() {
+  exe=mount-tmp
+  [[ "$(uname -s)" = "Linux" ]] && exe=$exe-linux
+  command $exe "$@"
 }
 
 ##
@@ -215,8 +226,14 @@ configure_fzf
 # Bash completion
 #
 configure_bashcomp() {
-  local f="$BREW"/etc/bash_completion
-  [ -f "$f" ] && source "$f"
+  local paths=(
+    /usr/share/bash-completion/completions/git
+    /usr/lib/git-core/git-sh-prompt
+    "$BREW"/etc/bash_completion
+  )
+  for f in "${paths[@]}"; do
+    [ -f "$f" ] && source "$f"
+  done
 }
 configure_bashcomp
 
@@ -262,6 +279,13 @@ gpg_is_v2() {
 }
 if ! gpg_is_v2; then
   alias gpg=gpg2
+fi
+
+##
+# gpg-agent
+#
+if ! pgrep gpg-agent > /dev/null; then
+  gpg-agent --daemon
 fi
 
 true

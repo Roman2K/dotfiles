@@ -18,12 +18,15 @@ Plug 'w0ng/vim-hybrid'
 " Syntax highlighting
 Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'elzr/vim-json'
 Plug 'gabrielelana/vim-markdown'
 Plug 'chr4/nginx.vim'
+Plug 'digitaltoad/vim-jade'
 Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
+Plug 'rhysd/vim-crystal'
 call plug#end()
 
 ""

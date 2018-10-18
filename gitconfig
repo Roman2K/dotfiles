@@ -31,4 +31,4 @@
 	old = red reverse
 	new = green reverse
 [gpg]
-	program = gpg
+	program = gpg2

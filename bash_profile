@@ -226,10 +226,14 @@ configure_fzf
 # Bash completion
 #
 configure_bashcomp() {
-  local f="$BREW"/etc/bash_completion
-  [ -f "$f" ] && source "$f"
-  local git_prompt=/usr/lib/git-core/git-sh-prompt
-  [ -f "$git_prompt" ] && source "$git_prompt"
+  local paths=(
+    /usr/share/bash-completion/completions/git
+    /usr/lib/git-core/git-sh-prompt
+    "$BREW"/etc/bash_completion
+  )
+  for f in "${paths[@]}"; do
+    [ -f "$f" ] && source "$f"
+  done
 }
 configure_bashcomp
 

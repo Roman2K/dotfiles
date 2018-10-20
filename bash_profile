@@ -33,14 +33,15 @@ command_exists() {
 #
 add_opt "$BREW"
 add_opt "$BINS"
-configure_tmux() {
+m() {
   local shell="bash"
   if command_exists reattach-to-user-namespace; then
     shell="reattach-to-user-namespace $shell"
   fi
-  alias m="tmux set -g default-command '$shell' \; new"
+  local args=$@
+  [ $# = 0 ] && args=(new)
+  tmux set -g default-command "$shell" \; "${args[@]}"
 }
-configure_tmux
 if [[ $- == *i* ]] && [ "$TERM_PROGRAM" = "Apple_Terminal" -a -z "$TMUX" ]; then
   m
 fi

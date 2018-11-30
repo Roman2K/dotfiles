@@ -113,3 +113,4 @@ nmap <leader>n :cnext<cr>
 nmap <leader>x :silent exec "!echo \| nc -U /tmp/execod.sock"<cr>
 autocmd FileType go nmap <leader><leader> <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType ruby nmap <leader><leader> :!ruby -c %<cr>

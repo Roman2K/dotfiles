@@ -7,9 +7,9 @@ class NumberFormatter
   def format(n)
     @units.each.with_index do |name, index|
       in_unit = n.to_f / @multiple ** index
-      next if in_unit > @multiple && index < @units.size - 1
+      next if in_unit >= @multiple && index < @units.size - 1
       in_unit = ("%.1f" % in_unit).sub(/\.0$/, '')
-      return "#{in_unit}#{name}#{@suffix}"
+      return "#{in_unit}#{name}"
     end
   end
 end

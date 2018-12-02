@@ -1,1 +1,4 @@
 set bell-style none
+
+"\eOD": backward-word
+"\eOC": forward-word

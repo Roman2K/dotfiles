@@ -1,0 +1,31 @@
+"~":
+  _: "~"
+
+  # code
+  code:     code
+  code/map: map
+
+  # Go
+  code/go/src:
+    _: gosrc
+
+    # Go GitHub Roman2K
+    github.com/Roman2K:
+      _: gogh
+      scat: scat
+
+    # Go GitHub MonAlbumPhoto
+    github.com/MonAlbumPhoto: gomap
+
+    # Go GitLab Roman2K
+    gitlab.com/Roman2K: gogl
+
+    # Go GitLab MonAlbumPhoto
+    map-gitlab.bearstech.com/mon-album-photo:
+      _: glmap
+
+      MAP-storage:          mapstorage
+      MAP-workers:          mapworkers
+      MAP-download-images:  mapdlimages
+      map-post-image:       mappostimage
+      map-process-image:    mapprocessimage

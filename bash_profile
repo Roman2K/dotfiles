@@ -282,11 +282,4 @@ if ! gpg_is_v2; then
   alias gpg=gpg2
 fi
 
-##
-# gpg-agent
-#
-if ! pgrep gpg-agent > /dev/null; then
-  gpg-agent --daemon
-fi
-
 true

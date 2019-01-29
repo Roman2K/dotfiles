@@ -32,3 +32,5 @@
 	new = green reverse
 [gpg]
 	program = gpg2
+[stash]
+	showPatch = true

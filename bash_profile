@@ -1,6 +1,7 @@
 OPT=$HOME/opt
 CODE=$HOME/code
 BIN=$CODE/bin
+BIN2=$HOME/bin
 TMP=$HOME/tmp
 BINS=$OPT/bins
 HOMEBREW=$OPT/homebrew
@@ -57,8 +58,7 @@ done
 ##
 # bin/
 #
-export PATH="$BIN:$PATH"
-export CPATH="$OPT/graphicsmagick/include/GraphicsMagick:$CPATH"
+export PATH="$BIN:$BIN2:$PATH"
 
 ##
 # .local
@@ -106,7 +106,9 @@ alias ll="ls -lph"
 alias st="git status"
 alias di="git diff"
 alias dis="git diff --staged"
-alias l="git log --stat"
+alias l="git log --pretty=oneline"
+alias lv="git log -p"
+alias lvs="git log --stat"
 alias a="git add"
 alias co="git commit"
 alias prebase="git pull --rebase"
@@ -114,8 +116,6 @@ alias cl="git clone"
 alias b="bundle exec"
 alias c="b rails c"
 alias rg="rg -g '!vendor'"
-alias tl="tmux list-sessions"
-alias ta="tmux attach -t"
 alias grep="grep --color=auto"
 alias serve="python3 -m http.server 8000"
 export GREP_COLORS='1;31'

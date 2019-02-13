@@ -5,8 +5,11 @@ set nocompatible
 "
 call plug#begin("~/.vim-plug")
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', {'dir': '~/opt/homebrew/opt/fzf'}
- \ | Plug 'junegunn/fzf.vim'
+if isdirectory($HOME."/opt/homebrew")
+  Plug '~/opt/homebrew/opt/fzf'
+else
+  Plug '~/opt/linuxbrew/opt/fzf'
+endif
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'

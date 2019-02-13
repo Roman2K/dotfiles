@@ -31,6 +31,6 @@
 	old = red reverse
 	new = green reverse
 [gpg]
-	program = gpg2
+	program = git-gpg-program
 [stash]
 	showPatch = true

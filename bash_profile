@@ -4,12 +4,10 @@ BIN=$CODE/bin
 BIN2=$HOME/bin
 TMP=$HOME/tmp
 BINS=$OPT/bins
-HOMEBREW=$OPT/homebrew
-LINUXBREW=$OPT/linuxbrew
 
-BREW=$HOMEBREW
-if [ -d $LINUXBREW ]; then
-  BREW=$LINUXBREW
+BREW=$OPT/homebrew
+if [ ! -d $BREW ]; then
+  BREW=$OPT/linuxbrew
 fi
 
 add_opt() {
@@ -83,6 +81,18 @@ add_xenv pyenv
 add_xenv goenv
 export PATH="node_modules/.bin:$PATH"
 export GOPATH="$HOME/.go:$CODE/go"
+
+##
+# Crystal
+#
+configure_crystal() {
+  local env=`crystal env`
+  if grep -q '^CRYSTAL_PATH="/usr/local/Cellar' <<<"$env"; then
+    eval "$env"
+    export CRYSTAL_PATH="$BREW${CRYSTAL_PATH#/usr/local}"
+  fi
+}
+configure_crystal
 
 ##
 # Locale

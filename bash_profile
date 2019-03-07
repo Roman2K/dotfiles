@@ -10,6 +10,12 @@ if [ ! -d $BREW ]; then
   BREW=$OPT/linuxbrew
 fi
 
+add_default_pkgconfig() {
+  local d=/usr/lib/x86_64-linux-gnu/pkgconfig
+  [ -d "$d" ] && export PKG_CONFIG_PATH="$d:$PKG_CONFIG_PATH"
+}
+add_default_pkgconfig
+
 add_opt() {
   local d=$1
   [ -d "$d/bin" ] && export PATH="$d/bin:$PATH"
@@ -81,6 +87,12 @@ add_xenv pyenv
 add_xenv goenv
 export PATH="node_modules/.bin:$PATH"
 export GOPATH="$HOME/.go:$CODE/go"
+
+##
+# Rust
+#
+add_opt "$HOME/.cargo"
+eval "$(rustup completions bash)"
 
 ##
 # Crystal

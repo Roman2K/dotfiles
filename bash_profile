@@ -142,6 +142,11 @@ alias grep="grep --color=auto"
 alias serve="python3 -m http.server 8000"
 export GREP_COLORS='1;31'
 
+# Dockerized PostgreSQL
+alias pg="docker run -it --rm --network postgres \
+  -e PGHOST=postgres -e PGUSER=postgres \
+  postgres"
+
 ##
 # cd aliases
 #

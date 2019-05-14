@@ -1,22 +1,5 @@
-Host imac
-  Hostname 192.168.1.100
-  User roman
-
-Host mb
-  Hostname 192.168.1.102
-  User roman
-
 Host dev
   Hostname 192.168.1.105
-  User roman
-
-Host gce-free
-  Hostname 35.195.92.187
-  User roman
-
-Host cullimac
-  Hostname 90.71.116.3
-  Port 2222
   User roman
 
 Host culldev
@@ -27,5 +10,5 @@ Host culldev
 
 Host ngrokdev
   Hostname 0.tcp.eu.ngrok.io
-  Port 13924
+  Port 12458
   User roman

@@ -18,6 +18,7 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 " Themes
 Plug 'w0ng/vim-hybrid'
+Plug 'morhetz/gruvbox'
 " Syntax highlighting
 Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'

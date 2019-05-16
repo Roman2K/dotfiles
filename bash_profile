@@ -147,6 +147,14 @@ alias pg="docker run -it --rm --network postgres \
   -e PGHOST=postgres -e PGUSER=postgres \
   postgres"
 
+# Dockerized InfluxDB
+alias influx="docker run -it --rm --network influx \
+  influxdb influx -host influxdb"
+
+alias mosh-clean='kill $(
+  ps --no-headers --sort=start_time -C mosh-server -o pid | head -n -1
+)'
+
 ##
 # cd aliases
 #

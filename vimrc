@@ -24,6 +24,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
 Plug 'gabrielelana/vim-markdown'
 Plug 'chr4/nginx.vim'
 Plug 'digitaltoad/vim-jade'
@@ -31,6 +32,7 @@ Plug 'zaiste/tmux.vim'
 Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
 Plug 'rhysd/vim-crystal'
+Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 ""
@@ -86,6 +88,12 @@ autocmd BufNewFile,BufRead Gemfile,Vagrantfile set filetype=ruby
 " Markdown
 "
 autocmd FileType markdown set textwidth=80
+
+""
+" Per-directory config
+" https://stackoverflow.com/a/18933951
+"
+set exrc
 
 ""
 " Fix for OS X crontab -e

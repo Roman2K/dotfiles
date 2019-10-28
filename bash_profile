@@ -140,6 +140,8 @@ alias c="b rails c"
 alias rg="rg -g '!vendor'"
 alias grep="grep --color=auto"
 alias serve="python3 -m http.server 8000"
+alias pbpaste="ssh -p2200 winpc bash -lc pbpaste"
+alias pbcopy="ssh -p2200 winpc bash -lc pbcopy"
 export GREP_COLORS='1;31'
 
 # Dockerized PostgreSQL
@@ -148,12 +150,16 @@ alias psql="docker run -it --rm --network postgres \
   postgres psql"
 
 # Dockerized Redis
-alias redis-cli="docker run -it --rm --network redis \
-  redis redis-cli -h redis"
+redis-cli() {
+  (cd ~/code/services2/docker-compose \
+    && ./run run --rm redis redis-cli -h redis "$@")
+}
 
 # Dockerized InfluxDB
-alias influx="docker run -it --rm --network influx \
-  influxdb influx -host influxdb"
+influx() {
+  (cd ~/code/services2/docker-compose \
+    && ./run run --rm influxdb influx -host influxdb "$@")
+}
 
 alias mosh-clean='kill $(
   ps --no-headers --sort=start_time -C mosh-server -o pid | head -n -1

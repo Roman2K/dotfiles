@@ -144,10 +144,15 @@ alias pbpaste="ssh -p2200 winpc bash -lc pbpaste"
 alias pbcopy="ssh -p2200 winpc bash -lc pbcopy"
 export GREP_COLORS='1;31'
 
-# Dockerized PostgreSQL
-alias psql="docker run -it --rm --network postgres \
-  -e PGHOST=postgres -e PGUSER=postgres \
-  postgres psql"
+# Dockerized PostgreSQL
+# alias psql="docker run -it --rm --network postgres \
+#   -e PGHOST=postgres -e PGUSER=postgres \
+#   postgres psql"
+psql() {
+  (cd ~/code/services2/docker-compose \
+    && ./run run --rm -e PGPASSWORD=postgres postgres \
+      psql -h postgres -U postgres -v ON_ERROR_STOP=1)
+}
 
 # Dockerized Redis
 redis-cli() {

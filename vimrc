@@ -82,7 +82,7 @@ set background=dark
 ""
 " Filetypes
 "
-autocmd BufNewFile,BufRead Gemfile,Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead Gemfile,Vagrantfile,*.jbuilder set filetype=ruby
 
 ""
 " Markdown

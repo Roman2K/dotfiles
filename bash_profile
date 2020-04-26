@@ -166,10 +166,6 @@ influx() {
     && ./run run --rm influxdb influx -host influxdb "$@")
 }
 
-alias mosh-clean='kill $(
-  ps --no-headers --sort=start_time -C mosh-server -o pid | head -n -1
-)'
-
 ##
 # cd aliases
 #

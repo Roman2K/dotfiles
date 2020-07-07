@@ -70,7 +70,7 @@ export PATH="$BIN:$BIN2:$PATH"
 add_opt $HOME/.local
 
 ##
-# rbenv, etc.
+# pyenv, etc.
 #
 add_xenv() {
   local name=$1
@@ -82,11 +82,16 @@ add_xenv() {
   [ -f "$compl" ] && source "$compl"
 }
 add_xenv rbenv
-add_xenv ndenv
 add_xenv pyenv
 add_xenv goenv
 export PATH="node_modules/.bin:$PATH"
 export GOPATH="$HOME/.go:$CODE/go"
+
+##
+# asdf
+#
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 ##
 # Rust
@@ -128,7 +133,7 @@ alias ll="ls -lph"
 alias st="git status"
 alias di="git diff"
 alias dis="git diff --staged"
-alias l="git log --pretty=oneline"
+alias l="git log --pretty=oneline --abbrev-commit"
 alias lv="git log -p"
 alias lvs="git log --stat"
 alias a="git add"
@@ -156,14 +161,20 @@ psql() {
 
 # Dockerized Redis
 redis-cli() {
+  svc=$1; shift
+  echo "connecting to $svc" >&2
   (cd ~/code/services2/docker-compose \
-    && ./run run --rm redis redis-cli -h redis "$@")
+    && ./run run --rm "$svc" redis-cli -h "$svc" "$@")
 }
 
 # Dockerized InfluxDB
 influx() {
   (cd ~/code/services2/docker-compose \
-    && ./run run --rm influxdb influx -host influxdb "$@")
+    && ./run run --rm influxdb2 influx -host hetax-influxdb.home -port 80 "$@")
+}
+influx2() {
+  (cd ~/code/services2/docker-compose \
+    && ./run run --rm influxdb2 influx -host influxdb2 "$@")
 }
 
 ##

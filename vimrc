@@ -33,6 +33,7 @@ Plug 'docker/docker', {'rtp': 'contrib/syntax/vim'}
 Plug 'elmcast/elm-vim'
 Plug 'rhysd/vim-crystal'
 Plug 'digitaltoad/vim-pug'
+Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 ""

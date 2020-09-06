@@ -170,7 +170,7 @@ redis-cli() {
 # Dockerized InfluxDB
 influx() {
   (cd ~/code/services2/docker-compose \
-    && ./run run --rm influxdb2 influx -host hetax-influxdb.home -port 80 "$@")
+    && ./run run --rm influxdb2 influx -host influxdb.home -port 80 "$@")
 }
 influx2() {
   (cd ~/code/services2/docker-compose \

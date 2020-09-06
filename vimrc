@@ -14,8 +14,8 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+Plug 'JMcKiern/vim-venter'
 " Themes
 Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
@@ -34,6 +34,7 @@ Plug 'elmcast/elm-vim'
 Plug 'rhysd/vim-crystal'
 Plug 'digitaltoad/vim-pug'
 Plug 'elixir-editors/vim-elixir'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 call plug#end()
 
 ""

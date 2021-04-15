@@ -16,6 +16,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'JMcKiern/vim-venter'
+Plug 'unblevable/quick-scope'
 " Themes
 Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
@@ -116,6 +117,11 @@ let g:go_fmt_command = "goimports"
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_term_enabled = 1
+
+""
+" quick-scope
+"
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 ""
 " Key bindings
